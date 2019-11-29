@@ -12,7 +12,7 @@ all: get_repository clean get build  deploy
 get_repository:
 	@echo "🛎 Getting Pages repository"
 	git checkout source
-	rm -rf .git
+	git submodule update --init --recursive
 	git clone https://$(TOKEN)@github.com/jjbeto/jjbeto.github.io.git $(DESTDIR)
 
 .PHONY: clean
