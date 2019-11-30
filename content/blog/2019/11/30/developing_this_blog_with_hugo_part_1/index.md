@@ -179,7 +179,7 @@ Another small CSS trick is [here](https://varya.me/en/posts/pseudo-tag-cloud-css
 
 {{< figure src="4-cloud-tags.png" title="Cloud tags." >}}
 
-How to do it here? You can check the [source code](https://github.com/jjbeto/jjbeto.github.io/blob/source/content/resume/experience.md), but to make it easier, you will need 2 things:
+How to do it here? You can check the [source code](https://github.com/jjbeto/jjbeto.github.io/tree/source/content/resume/experience.md), but to make it easier, you will need 2 things:
 
 ```html
 <!-- The HTML for the cloud -->
@@ -278,11 +278,11 @@ So as a first try out, I've decided to post as mini-publications, like one of my
     - Items
     - Conclusion
 2. Use all possible tools to show examples
-3. Give a repository [link](https://github.com/jjbeto/jjbeto.github.io/blob/source/) in the end to show a [running demo](https://jjbeto.com)
+3. Give a repository [link](https://github.com/jjbeto/jjbeto.github.io/tree/source/) in the end to show a [running demo](https://jjbeto.com)
 
 As an extra tool, I'm going to create a `Table of Contents` as a fist item in each post to make it easier going around it.
 
-It's possible to check [in the source code of this page](https://github.com/jjbeto/jjbeto.github.io/blob/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/index.md), but I'll list some points that took me a fill extra time to figure it out how to do:
+It's possible to check [in the source code of this page](https://github.com/jjbeto/jjbeto.github.io/tree/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/index.md), but I'll list some points that took me a fill extra time to figure it out how to do:
 
 ### 7.1. Anchors and Table of Content
 
@@ -310,7 +310,7 @@ If you don't know what a `HTML Anchor` is, you should [search more](https://lmgt
 
 ### 7.2. Handling Images
 
-As a folder-centric framework, I'm going to store related files all together in the same folder. You can check this on this post [source code](https://github.com/jjbeto/jjbeto.github.io/blob/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/)), and by the end it was incredibly easy to show the image:
+As a folder-centric framework, I'm going to store related files all together in the same folder. You can check this on this post [source code](https://github.com/jjbeto/jjbeto.github.io/tree/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/)), and by the end it was incredibly easy to show the image:
 
 ```markdown
 ![This is an image](featured.jpg)
