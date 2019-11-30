@@ -1,9 +1,9 @@
 {
-  "name": "jjbeto",
-  "short_name": "jjbeto",
+  "name": "Academic",
+  "short_name": "Academic",
   "lang": "en-us",
-  "theme_color": "rgb(0, 136, 204)",
-  "background_color": "rgb(0, 136, 204)",
+  "theme_color": "#2962ff",
+  "background_color": "#2962ff",
   "icons": [{
     "src": "../img/icon-192.png",
     "sizes": "192x192",
