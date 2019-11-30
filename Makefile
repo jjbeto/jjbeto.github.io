@@ -48,8 +48,7 @@ test:
 .PHONY: cname
 test:
 	@echo "🔗 Generate CNAME"
-	cd $(DESTDIR)
-	echo "jjbeto.com" >> CNAME
+	echo "jjbeto.com" > $(DESTDIR)/CNAME
 
 .PHONY: deploy
 deploy:
