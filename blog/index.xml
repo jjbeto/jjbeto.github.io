@@ -155,7 +155,7 @@ Resume initial page.
 Cloud tags.
 &lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;How to do it here? You can check the &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/blob/source/content/resume/experience.md&#34; target=&#34;_blank&#34;&gt;source code&lt;/a&gt;, but to make it easier, you will need 2 things:&lt;/p&gt;
+&lt;p&gt;How to do it here? You can check the &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/resume/experience.md&#34; target=&#34;_blank&#34;&gt;source code&lt;/a&gt;, but to make it easier, you will need 2 things:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!-- The HTML for the cloud --&amp;gt;
 &amp;lt;div class=&amp;quot;cloud_wrapper&amp;quot;&amp;gt;
 &amp;lt;ul class=&amp;quot;cloud&amp;quot;&amp;gt;
@@ -227,10 +227,10 @@ page_type = &amp;quot;blog&amp;quot;
 &lt;li&gt;Conclusion&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Use all possible tools to show examples&lt;/li&gt;
-&lt;li&gt;Give a repository &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/blob/source/&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt; in the end to show a &lt;a href=&#34;https://jjbeto.com&#34; target=&#34;_blank&#34;&gt;running demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Give a repository &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt; in the end to show a &lt;a href=&#34;https://jjbeto.com&#34; target=&#34;_blank&#34;&gt;running demo&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;As an extra tool, I&amp;rsquo;m going to create a &lt;code&gt;Table of Contents&lt;/code&gt; as a fist item in each post to make it easier going around it.&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s possible to check &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/blob/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/index.md&#34; target=&#34;_blank&#34;&gt;in the source code of this page&lt;/a&gt;, but I&amp;rsquo;ll list some points that took me a fill extra time to figure it out how to do:&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s possible to check &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/index.md&#34; target=&#34;_blank&#34;&gt;in the source code of this page&lt;/a&gt;, but I&amp;rsquo;ll list some points that took me a fill extra time to figure it out how to do:&lt;/p&gt;
 &lt;h3 id=&#34;7-1-anchors-and-table-of-content&#34;&gt;7.1. Anchors and Table of Content&lt;/h3&gt;
 &lt;p&gt;I didn&amp;rsquo;t find an easy way to create a Table of Contents for Hugo or Academic Theme, but I&amp;rsquo;ve found &lt;a href=&#34;https://discourse.gohugo.io/t/creating-anchors-in-hugo-pages-solved/9552&#34; target=&#34;_blank&#34;&gt;in this post&lt;/a&gt; a &lt;a href=&#34;https://raw.githubusercontent.com/kaushalmodi/ox-hugo/master/test/site/content/posts/link-to-headings-by-name.md&#34; target=&#34;_blank&#34;&gt;helpful link&lt;/a&gt; to make it to work.&lt;/p&gt;
 &lt;p&gt;Now every post will start with:&lt;/p&gt;
@@ -249,7 +249,7 @@ page_type = &amp;quot;blog&amp;quot;
 &lt;p&gt;This way is very simple to follow the actual &lt;code&gt;Table of Contents&lt;/code&gt; in the post and also in the code. If somebody see this post and have other ideas to make it better, &lt;strong&gt;please let me know!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;If you don&amp;rsquo;t know what a &lt;code&gt;HTML Anchor&lt;/code&gt; is, you should &lt;a href=&#34;https://lmgtfy.com/?q=html+anchor&#34; target=&#34;_blank&#34;&gt;search more&lt;/a&gt; about it 😄&lt;/p&gt;
 &lt;h3 id=&#34;7-2-handling-images&#34;&gt;7.2. Handling Images&lt;/h3&gt;
-&lt;p&gt;As a folder-centric framework, I&amp;rsquo;m going to store related files all together in the same folder. You can check this on this post &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/blob/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/&#34; target=&#34;_blank&#34;&gt;source code&lt;/a&gt;), and by the end it was incredibly easy to show the image:&lt;/p&gt;
+&lt;p&gt;As a folder-centric framework, I&amp;rsquo;m going to store related files all together in the same folder. You can check this on this post &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/&#34; target=&#34;_blank&#34;&gt;source code&lt;/a&gt;), and by the end it was incredibly easy to show the image:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;![This is an image](featured.jpg)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The only problem is that this way you will have a static image directly on the post body, also depending on the image size you can have problems to see it properly. Then I found interesting &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/6d92b0e8ab5512a4489173a560b27adf91c0b260/exampleSite&#34; target=&#34;_blank&#34;&gt;sample folder&lt;/a&gt; with nice image handling, for more about this go to the &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#example-figure-input&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
