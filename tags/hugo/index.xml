@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo | /jjbeto</title><link>https://jjbeto.com/tags/hugo/</link><atom:link href="https://jjbeto.com/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><description>Hugo</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 30 Nov 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/icon-192.png</url><title>Hugo</title><link>https://jjbeto.com/tags/hugo/</link></image><item><title>Complete Setup for this Website - Part 1</title><link>https://jjbeto.com/blog/2019/11/30/developing_this_blog_with_hugo_part_1/</link><pubDate>Sat, 30 Nov 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/blog/2019/11/30/developing_this_blog_with_hugo_part_1/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo | /jjbeto</title><link>https://jjbeto.com/tags/hugo/</link><atom:link href="https://jjbeto.com/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><description>Hugo</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 30 Nov 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/avatar.jpg</url><title>Hugo</title><link>https://jjbeto.com/tags/hugo/</link></image><item><title>Complete Setup for this Website - Part 1</title><link>https://jjbeto.com/blog/2019/11/30/developing_this_blog_with_hugo_part_1/</link><pubDate>Sat, 30 Nov 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/blog/2019/11/30/developing_this_blog_with_hugo_part_1/</guid><description>
 &lt;p&gt;&lt;aside&gt;
 &lt;div class=&#34;ox-hugo-toc toc&#34;&gt;
 &lt;header&gt;
@@ -41,10 +41,10 @@
 &lt;pre&gt;&lt;code&gt;hugo server
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-&lt;a data-fancybox=&#34;&#34; href=&#34;1-hugo_serve.png&#34; data-caption=&#34;Running hugo server on command line.&#34;&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;1-hugo_serve.png&#34; data-caption=&#34;Running hugo server on command line&#34;&gt;
 &lt;img src=&#34;1-hugo_serve.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
 &lt;figcaption&gt;
-Running &lt;code&gt;hugo server&lt;/code&gt; on command line.
+Running &lt;code&gt;hugo server&lt;/code&gt; on command line
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Then accessing &lt;a href=&#34;http://localhost:1313/&#34; target=&#34;_blank&#34;&gt;localhost&lt;/a&gt; you can find something like this:&lt;/p&gt;
@@ -77,7 +77,7 @@ The documentation in the files itself is pretty good and self explanatory, but y
 ├── first.md // &amp;lt;- https://example.com/quote/first/
 └── second.md // &amp;lt;- https://example.com/quote/second/
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So I decided to try to bring some sense to this &lt;code&gt;chaos&lt;/code&gt; using simple pattern: on &lt;code&gt;posts&lt;/code&gt; folder I&amp;rsquo;m going to organize the posts using the date structure &lt;code&gt;year/month/day&lt;/code&gt; and put all related data to that post in this folder, if I want to add multiple posts in the same day I can also controll it using &lt;code&gt;post-path/index.md&lt;/code&gt; pattern. I&amp;rsquo;m also going to rename folder &lt;code&gt;posts&lt;/code&gt; to &lt;code&gt;blog&lt;/code&gt; (in my sense it is more meaningful, also url-wise). So the blog content will be organized like that:&lt;/p&gt;
+&lt;p&gt;So I decided to try to bring some sense to this &lt;code&gt;chaos&lt;/code&gt; using simple pattern: on &lt;code&gt;posts&lt;/code&gt; folder I&amp;rsquo;m going to organize the posts using the date structure &lt;code&gt;year/month/day&lt;/code&gt; and put all related data to that post in this folder, if I want to add multiple posts in the same day I can also control it using &lt;code&gt;post-path/index.md&lt;/code&gt; pattern. I&amp;rsquo;m also going to rename folder &lt;code&gt;posts&lt;/code&gt; to &lt;code&gt;blog&lt;/code&gt; (in my sense it is more meaningful, also url-wise). So the blog content will be organized like that:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;.
 └── content
 └── blog
@@ -141,18 +141,18 @@ type: &amp;quot;widget_page&amp;quot;
 &lt;li&gt;&lt;p&gt;Fullfil the data! Changing the data on &lt;code&gt;./content/authors/admin/_index.md&lt;/code&gt; (which I renamed to &lt;code&gt;./content/authors/jjbeto/_index.md&lt;/code&gt;) and updating the other pages on &lt;code&gt;.content/resume/&lt;/code&gt; with custom data is enought to have a really nice page already&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;figure&gt;
-&lt;a data-fancybox=&#34;&#34; href=&#34;3-resume-view.png&#34; data-caption=&#34;Resume initial page.&#34;&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;3-resume-view.png&#34; data-caption=&#34;Resume initial page&#34;&gt;
 &lt;img src=&#34;3-resume-view.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
 &lt;figcaption&gt;
-Resume initial page.
+Resume initial page
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Another small CSS trick is &lt;a href=&#34;https://varya.me/en/posts/pseudo-tag-cloud-css/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;: creating a small tag cloud for my experience stack list:&lt;/p&gt;
 &lt;figure&gt;
-&lt;a data-fancybox=&#34;&#34; href=&#34;4-cloud-tags.png&#34; data-caption=&#34;Cloud tags.&#34;&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;4-cloud-tags.png&#34; data-caption=&#34;Cloud tags&#34;&gt;
 &lt;img src=&#34;4-cloud-tags.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
 &lt;figcaption&gt;
-Cloud tags.
+Cloud tags
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;How to do it here? You can check the &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/resume/experience.md&#34; target=&#34;_blank&#34;&gt;source code&lt;/a&gt;, but to make it easier, you will need 2 things:&lt;/p&gt;
@@ -174,8 +174,7 @@ Cloud tags.
 .cloud li:nth-of-type(5n-3) { font-size: 1em; }
 &amp;lt;/style&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Another thing that I want to add is &lt;a href=&#34;http://konpa.github.io/devicon/&#34; target=&#34;_blank&#34;&gt;devicons&lt;/a&gt; to show , so that I can list the tech stack everywhere!&lt;/p&gt;
-&lt;p&gt;To do so, I&amp;rsquo;ve added to &lt;code&gt;./themes/academic/layout/partials/site_head.html&lt;/code&gt; where all CSS are imported and add:&lt;/p&gt;
+&lt;p&gt;Another thing that I want to add is &lt;a href=&#34;http://konpa.github.io/devicon/&#34; target=&#34;_blank&#34;&gt;devicons&lt;/a&gt; so that I can list the tech stack that I&amp;rsquo;m using!&lt;/p&gt;
 &lt;p&gt;To do so, I&amp;rsquo;ve added to the end of &lt;code&gt;./content/resume/skills.md&lt;/code&gt; the ref style:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -216,7 +215,7 @@ page_type = &amp;quot;blog&amp;quot;
 &lt;h2 id=&#34;blogging&#34;&gt;7. Blogging&lt;/h2&gt;
 &lt;p&gt;To create a post we just need to write a lot of cool stuff and post it, right?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The answer is: no, not really.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m kind of methodic, I don&amp;rsquo;t like to read blogs or sites that looks too flooded with information and mainly: I hate to look at a content and fill confused to follow up. Well I&amp;rsquo;m sure that I&amp;rsquo;m not a good writer myself, and English is not my mother language too, so it&amp;rsquo;s kinda complicated to get things done whitout too much mess.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m kind of methodic, I don&amp;rsquo;t like to read blogs or sites that looks too flooded with information and mainly: I hate to look at a content and fill confused to follow up. Well I&amp;rsquo;m sure that I&amp;rsquo;m not a good writer myself, and English is not my mother language too, so it&amp;rsquo;s kinda complicated to get things done without too much mess.&lt;/p&gt;
 &lt;p&gt;For that I did some research about &lt;code&gt;how to organize my posts in a way that somebody else can understands it&lt;/code&gt; and&amp;hellip; No lucky 😅&lt;/p&gt;
 &lt;p&gt;So as a first try out, I&amp;rsquo;ve decided to post as mini-publications, like one of my favorite Java-related blogs (&lt;a href=&#34;https://www.baeldung.com/&#34; target=&#34;_blank&#34;&gt;Baeldung&lt;/a&gt;) does:&lt;/p&gt;
 &lt;ol&gt;

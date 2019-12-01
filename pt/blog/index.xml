@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog | /jjbeto</title><link>https://jjbeto.com/pt/blog/</link><atom:link href="https://jjbeto.com/pt/blog/index.xml" rel="self" type="application/rss+xml"/><description>Blog</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>pt</language><lastBuildDate>Sat, 30 Nov 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/blog/coffee.jpg</url><title>Blog</title><link>https://jjbeto.com/pt/blog/</link></image><item><title>Setup Completo Para Este Site - Parte 1</title><link>https://jjbeto.com/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/</link><pubDate>Sat, 30 Nov 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/</guid><description>
+&lt;p&gt;&lt;aside&gt;
+&lt;div class=&#34;ox-hugo-toc toc&#34;&gt;
+&lt;header&gt;
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;/header&gt;
+- &lt;a href=&#34;#visao-geral&#34;&gt;1. Visão Geral&lt;/a&gt;
+- &lt;a href=&#34;#objetivo&#34;&gt;2. Objetivo&lt;/a&gt;
+- &lt;a href=&#34;#setup&#34;&gt;3. Setup&lt;/a&gt;
+- &lt;a href=&#34;#aonde-estou&#34;&gt;4. Ok, então.. Aonde estou?&lt;/a&gt;
+- &lt;a href=&#34;#curriculo&#34;&gt;5. Primeira Página: Currículo&lt;/a&gt;
+- &lt;a href=&#34;#homepage-revisao&#34;&gt;6. Home Page: Revisão&lt;/a&gt;
+- &lt;a href=&#34;#postando&#34;&gt;7. Postando&lt;/a&gt;
+- &lt;a href=&#34;#publicando&#34;&gt;8. Publicando&lt;/a&gt;
+- &lt;a href=&#34;#conclusao&#34;&gt;9. Conclusão&lt;/a&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+&lt;!--endtoc--&gt;&lt;/p&gt;
+&lt;h2 id=&#34;visao-geral&#34;&gt;1. Visão Geral&lt;/h2&gt;
+&lt;p&gt;Eu finalmente decidi fazer um site no estilo Blog 🏆. E não, o &lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt; que vamos falar neste post não é o &lt;a href=&#34;https://en.wikipedia.org/wiki/Hugo_(franchise)&#34; target=&#34;_blank&#34;&gt;Hugo Game&lt;/a&gt; 😂&lt;/p&gt;
+&lt;p&gt;Enfim&amp;hellip; Eu gosto muito de tecnologia, viagens, cervejas e algumas outras coisa, por isso acho que posso compartilhar um pouco do que sei (ou acho que sei) com qualquer um que esteja disposto a ler sobre isso aqui 🤓&lt;/p&gt;
+&lt;p&gt;Como meu primeiro post, &lt;strong&gt;quero compartilhar minha experiência com &lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;&lt;/strong&gt;, vocês poderão encontrar todo o código fonte no meu repositório do &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; (preste atenção na branch 😉).&lt;/p&gt;
+&lt;h2 id=&#34;objetivo&#34;&gt;2. Objetivo&lt;/h2&gt;
+&lt;p&gt;Pra mim fazer um blog não deveria ser algo tão complexo de se criar, e na verdade não é. Para serviços de blogs complexos com várias funcionalidades especiais e que ainda precisam lidar com a carga de prover infraestrutura pra diversos clientes ao mesmo tempo, é obviamente mais complexo de se manter como um projeto.&lt;/p&gt;
+&lt;p&gt;Mas esse não é o meu caso.&lt;/p&gt;
+&lt;p&gt;O que eu preciso e de um lugar pra por minhas anotaçōes, compartilhar algum conteúdo que possa ser interessante pra outras pessoas e quem sabe iniciar conversas interessantes sobre tecnologia (principalmente, mas não exclusivamente).&lt;/p&gt;
+&lt;p&gt;Então fiz uma pesquisa e finalmente decidi usar o &lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;. Vocês encontrarão vários posts comparando diversos geradores de sites estáticos (pra blogs ou sites de uso geral como o Hugo), mas eu não vou entrar nesse mérito aqui. Se você quer pesquisar mais profundamente sobre esse item, você pode começar por estas comparaçōes interessantes &lt;a href=&#34;https://www.techiediaries.com/jekyll-hugo-hexo/&#34; target=&#34;_blank&#34;&gt;aqui&lt;/a&gt; e &lt;a href=&#34;https://stackshare.io/stackups/hexo-vs-hugo-vs-jekyll&#34; target=&#34;_blank&#34;&gt;aqui&lt;/a&gt; so pra começar (links em inglês).&lt;/p&gt;
+&lt;p&gt;Então vamos bloggar 🤓&lt;/p&gt;
+&lt;h2 id=&#34;setup&#34;&gt;3. Setup&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Para instalar o Hugo siga as intruçōes &lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34; target=&#34;_blank&#34;&gt;descritas aqui&lt;/a&gt; na documentação oficial;
+&lt;ul&gt;
+&lt;li&gt;Escolhi instalar com &lt;code&gt;brew&lt;/code&gt; pois uso Mac e é muito fácil;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Para criar meu projeto inicial eu segui os passos &lt;a href=&#34;https://sourcethemes.com/academic/docs/install/&#34; target=&#34;_blank&#34;&gt;descritos aqui&lt;/a&gt; na documentação oficial do tema Academics;
+&lt;ul&gt;
+&lt;li&gt;Decidi usar o opção &amp;lsquo;Install with Git&amp;rsquo; (instalar usando Git) apenas para manter os créditos para o repositório oficial através do link no github &lt;code&gt;forked from&lt;/code&gt; 😄&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Depois de fazer a instalação básica de acordo com a documentação, usei linha de comando bash para ir até o diretório do projeto e executei o seguinte comando:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hugo server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;1-hugo_serve.png&#34; data-caption=&#34;Executando hugo server na linha de comando&#34;&gt;
+&lt;img src=&#34;1-hugo_serve.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Executando &lt;code&gt;hugo server&lt;/code&gt; na linha de comando
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Então ao acessar o link &lt;a href=&#34;http://localhost:1313/&#34; target=&#34;_blank&#34;&gt;localhost&lt;/a&gt; é possível ver um site assim:&lt;/p&gt;
+&lt;figure&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;2-first-home-view.png&#34; data-caption=&#34;Págima Inicial&#34;&gt;
+&lt;img src=&#34;2-first-home-view.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Págima Inicial
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Muito bom, agora temos um template completo executando localmente 😬&lt;/p&gt;
+&lt;h2 id=&#34;aonde-estou&#34;&gt;4. Ok, então.. Aonde estou?&lt;/h2&gt;
+&lt;p&gt;Sim! Está vivo! Mas, então.. E agora? Tem um monte de arquivos pra todo lado e várias páginas que na realidade eu nem preciso. Encontrei um artigo interessante falando exatamente sobre isso &lt;a href=&#34;https://andreaczhang.rbind.io/post/my-1st-blogpost/&#34; target=&#34;_blank&#34;&gt;aqui&lt;/a&gt; (inglês) e é um fato, agente se sente um pouco perdido.&lt;/p&gt;
+&lt;p&gt;Mas ok, primeiro as coisas primeiras: vamos limpar o código e definir o &lt;a href=&#34;https://en.wikipedia.org/wiki/Minimum_viable_product&#34; target=&#34;_blank&#34;&gt;MVP&lt;/a&gt;, certo?&lt;/p&gt;
+&lt;h3 id=&#34;4-1-config-toml-params-toml&#34;&gt;4.1. config.toml &amp;amp; params.toml&lt;/h3&gt;
+&lt;p&gt;Não há muito o que fazer aqui, apenas a url, informaçōes basicas e dados de contato (também alguma configuração do tema que achar necessário).
+A documentação nos próprios arquivos são muito boas e auto explicativas, mas você pode conhecer algumas funcionalidades extras na &lt;a href=&#34;https://sourcethemes.com/academic/docs/page-builder/&#34; target=&#34;_blank&#34;&gt;documentação do Academic&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;4-2-páginas-mínimas-e-organização-de-conteúdo&#34;&gt;4.2. Páginas Mínimas e Organização de Conteúdo&lt;/h3&gt;
+&lt;p&gt;De acordo com a documentação do &lt;a href=&#34;https://gohugo.io/content-management/organization/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;, a organização básica é baseada em diretórios e arquivos, como é possível ver nesse exemplo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.
+└── content
+└── about
+| └── index.md // &amp;lt;- https://example.com/about/
+├── posts
+| ├── firstpost.md // &amp;lt;- https://example.com/posts/firstpost/
+| ├── happy
+| | └── ness.md // &amp;lt;- https://example.com/posts/happy/ness/
+| └── secondpost.md // &amp;lt;- https://example.com/posts/secondpost/
+└── quote
+├── first.md // &amp;lt;- https://example.com/quote/first/
+└── second.md // &amp;lt;- https://example.com/quote/second/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Então decidi tentar trazer algum consenso pra esse &lt;code&gt;caos&lt;/code&gt; usando um padrão simples: no diretório &lt;code&gt;posts&lt;/code&gt; vou organizar as postagens usando uma estrutura de data &lt;code&gt;ano/mês/dia&lt;/code&gt; e por todos os arquivos relativos ao post no mesmo diretório, se eu precisar criar multiplas postagens no mesmo dia eu também posso controlar com um diretório pra reservar o nome do post: &lt;code&gt;.content/posts/2019/11/30/meu-post-bacana/index.md&lt;/code&gt;. Também vou renomear o diretório &lt;code&gt;posts&lt;/code&gt; para &lt;code&gt;blog&lt;/code&gt; (é mais relevante no meu entendimento, também considerando a url). Então o conteúdo do blog será organizado assim:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.
+└── content
+└── blog
+└── 2019
+└── 11
+| └── 30
+| └── developing_this_blog_with_hugo.md // &amp;lt;- https://jjbeto.com/blog/2019/11/30/developing_this_blog_with_hugo/
+└-- 12
+└-- 01
+└── following_awesome_post.md // &amp;lt;- https://jjbeto.com/blog/2019/12/05/following_awesome_post/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dessa forma é possível agregar todos os conteúdos relacionados em um mesmo lugar, também chegar rapidamente até uma postagem pela data e de repente posso até criar um plugin pra fazer algo mais personalizado no futuro (quem sabe?).&lt;/p&gt;
+&lt;p&gt;Fora a organização do post, também preciso decidir sobre o conteúdo em geral do site, então inicialmente vou preparar o seguinte:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Página&lt;/th&gt;
+&lt;th&gt;Motivação&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Sobre (página padrão de autores do Hugo)&lt;/td&gt;
+&lt;td&gt;Currículo mínimo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Currículo&lt;/td&gt;
+&lt;td&gt;É bom ter um online e também já testar algumas funcionalidades 😄&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Contato&lt;/td&gt;
+&lt;td&gt;Er, disponibilizar algumas formas de contato via redes sociais&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Página básica do &lt;code&gt;/blog&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Página para agregar a lista de postagens&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Depois é só adicionar outras páginas com mais funcionalidades, como:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cursos: para páginas com conteúdo no estilo tutorial como esse aqui 🤔&lt;/li&gt;
+&lt;li&gt;Palestras: para meetups e/ou palestras que eu ache interessante de acompanhar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;O plano básico está todo definido. Vamos começar a trabalhar nele 😄&lt;/p&gt;
+&lt;h2 id=&#34;curriculo&#34;&gt;5. Primeira Página: Currículo&lt;/h2&gt;
+&lt;p&gt;A página padrão do tema Academic tem componentes demais (claro, eles querem exibir o máximo possível de funcionalidades, certo?), e como esse tema é mais voltado à academia/ensino em geral, tem várias ferramentas e páginas muito boas para ajudar a &lt;strong&gt;mostrar minhas habilidades&lt;/strong&gt;, mas eu quero uma página inicial mais limpa, com apenas as últimas postagens e uma apresentação simplificada de quem sou eu.&lt;/p&gt;
+&lt;p&gt;Então vou criar o diretório &lt;code&gt;resume&lt;/code&gt; (em português será traduzido pra &lt;code&gt;curriculo&lt;/code&gt; usando uma feature do Hugo chamada &lt;code&gt;slug&lt;/code&gt;, mas falarei disso em outra postagem - eu acho) e testar como usar as funcionalidades do Hugo lá, transferindo tudo relacionado ao tema da &lt;code&gt;home&lt;/code&gt; para &lt;code&gt;resume&lt;/code&gt;. Isso pode limpar a página inicial mas mantendo várias coisas legais. Você pode fazer um fork da última versão do meu currículo &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/resume&#34; target=&#34;_blank&#34;&gt;no meu GitHub&lt;/a&gt; e atualizar com seus próprios dados e adicionar o diretório no seu próprio site (se utilizar Hugo).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Criar o diretório &lt;code&gt;./content/resume&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Criar arquivo &lt;code&gt;./content/resume/index.md&lt;/code&gt; que define o widget: no meu caso caso é apenas uma página vazia onde adicionarei sessões exatamente como na página inicial&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: &amp;quot;Currículo&amp;quot;
+date: &amp;quot;2019-11-30T12:00:00Z&amp;quot;
+type: &amp;quot;widget_page&amp;quot;
+---
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Copiar &lt;code&gt;./content/home/about.md&lt;/code&gt; para &lt;code&gt;.content/resume/&lt;/code&gt; para funcionar da mesma forma que a página inicial&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mover &lt;code&gt;./content/home/accomplishments.md&lt;/code&gt;, &lt;code&gt;./content/home/skills.md&lt;/code&gt; e &lt;code&gt;./content/home/experience.md&lt;/code&gt; para &lt;code&gt;.content/resume/&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Duplicar &lt;code&gt;./content/resume/accomplishments.md&lt;/code&gt; para &lt;code&gt;./content/resume/certifications.md&lt;/code&gt; para reusar esta funcionalidade, separando certificações de cursos&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Preencher todos os dados! Mudar também os dados em &lt;code&gt;./content/authors/admin/_index.md&lt;/code&gt; (que eu renomeei para &lt;code&gt;./content/authors/jjbeto/_index.md&lt;/code&gt;) e atualizar as outras páginas em &lt;code&gt;.content/resume/&lt;/code&gt; com dados customizados já é o suficiente para ter um resultado muito bom&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;3-resume-view.png&#34; data-caption=&#34;Currículo inicial&#34;&gt;
+&lt;img src=&#34;3-resume-view.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Currículo inicial
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Também usei um pequeno truque de CSS descrito &lt;a href=&#34;https://varya.me/en/posts/pseudo-tag-cloud-css/&#34; target=&#34;_blank&#34;&gt;aqui&lt;/a&gt;, assim pude criar uma núvem de tags pra listar as tecnologias que tenho experiência:&lt;/p&gt;
+&lt;figure&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;4-cloud-tags.png&#34; data-caption=&#34;Núvem de tags&#34;&gt;
+&lt;img src=&#34;4-cloud-tags.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Núvem de tags
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Como fazer isso? Você pode verificar no &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/resume/experience.md&#34; target=&#34;_blank&#34;&gt;código fonte&lt;/a&gt;, mas pra ser mais fácil vou listar aqui. São necessários apenas 2 itens:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!-- O HTML para a nuvem --&amp;gt;
+&amp;lt;div class=&amp;quot;cloud_wrapper&amp;quot;&amp;gt;
+&amp;lt;ul class=&amp;quot;cloud&amp;quot;&amp;gt;
+&amp;lt;li&amp;gt;Item 01&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Item 02&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+...
+&amp;lt;!-- O CSS para a nuvem --&amp;gt;
+&amp;lt;style&amp;gt;
+.cloud_wrapper { text-align: center; }
+.cloud { display: inline; list-style-type: none; width: 80%; margin: auto; }
+.cloud li { list-style: none; display: inline; margin: 2px; }
+.cloud li:nth-of-type(3n+1) { font-size: 1.25em; }
+.cloud li:nth-of-type(4n+3) { font-size: 1.5em; }
+.cloud li:nth-of-type(5n-3) { font-size: 1em; }
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Outra coisa que adicionei foi os ícones do &lt;a href=&#34;http://konpa.github.io/devicon/&#34; target=&#34;_blank&#34;&gt;devicons&lt;/a&gt; para poder mostrar imagens da stack que estou utilizando!&lt;/p&gt;
+&lt;p&gt;Para fazer isso apenas adicionei em &lt;code&gt;./content/resume/skills.md&lt;/code&gt; a referência do estilo:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Assim posso utilizar ícones dessa forma:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;[[feature]]
+icon = &amp;quot;apache-plain&amp;quot;
+icon_pack = &amp;quot;devicon&amp;quot;
+name = &amp;quot;Apache&amp;quot;
+description = &amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Com certeza existe uma forma melhor de adicionar ícones no Hugo de forma global, assim eu poderia usar esses ícones em qualquer lugar do site, mas não fiz isso por enquanto apenas porque quero usar esses ícones exclusivamente em &lt;code&gt;./content/resume/skills.md&lt;/code&gt;, logo não preciso obrigar baixar o CSS em qualquer página lida.&lt;/p&gt;
+&lt;p&gt;Sensacional, né?! Agora podemos brincar com o resto do conteúdo e mudar outros pontos que sejam interessantes e/ou úteis.&lt;/p&gt;
+&lt;h2 id=&#34;homepage-revisao&#34;&gt;6. Home Page: Revisão&lt;/h2&gt;
+&lt;p&gt;Agora que a página do &lt;a href=&#34;https://jjbeto.com/resume/&#34;&gt;currículo&lt;/a&gt; está pronta, podemos terminar a página inicial:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Activate &lt;code&gt;./content/home/hero.md&lt;/code&gt; para usar como &amp;ldquo;bem vindo&amp;rdquo;;&lt;/li&gt;
+&lt;li&gt;Desabilitar as seguintes páginas (sem remover pois eu posso precisar dessas páginas em breve):
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;./content/home/featured.md&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;./content/home/projects.md&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;./content/home/publications.md&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;./content/home/tags.md&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;./content/home/talks.md&lt;/code&gt;;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Eu renomeei o diretório &lt;code&gt;./content/post&lt;/code&gt; para &lt;code&gt;./content/blog&lt;/code&gt; anteriormente, logo o widget &lt;code&gt;./content/home/posts.md&lt;/code&gt; parou de funcionar! Não, na verdade o tipo de itens listados por padrão é &lt;code&gt;post&lt;/code&gt;, então eu apenas mudei para &lt;code&gt;blog&lt;/code&gt; (nome do diretório) e tudo voltou a funcionar.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;[content]
+# Page type to display. E.g. post, talk, or publication.
+page_type = &amp;quot;blog&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Outra pequena mudança que eu quiz fazer foi o favicon (aquele ícone que fica no topo do navegador). Para mudar isso primeiro precisei encontrar onde ele estava sendo usado: &lt;code&gt;./themes/academic/layout/partials/site_head.html&lt;/code&gt; na linha &lt;code&gt;125&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; href=&amp;quot;{{ &amp;quot;img/icon-32.png&amp;quot; | relURL }}&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;O tema Academics tem o seu próprio icone guardado em &lt;code&gt;./themes/academic/static/img/icon-32.png&lt;/code&gt;, então tudo que eu precisei fazer foi sobreescrever isso com o meu próprio ícone em &lt;code&gt;.static/img&lt;/code&gt;, adicionando uma imagem PNG com o mesmo nome 🥇&lt;/p&gt;
+&lt;p&gt;Mas qual ícone usar? 🤔&lt;/p&gt;
+&lt;p&gt;Decidi não investir muito tempo nisso por agora, então fui nesse &lt;a href=&#34;http://fa2png.io/icons/&#34; target=&#34;_blank&#34;&gt;site muito legal&lt;/a&gt; e gerei um ícone baseado no &lt;a href=&#34;https://konpa.github.io/devicon/&#34; target=&#34;_blank&#34;&gt;Devicons&lt;/a&gt;! Apenas guardei o PNG em &lt;code&gt;.static/img/icon-32.png&lt;/code&gt; e está pronto!&lt;/p&gt;
+&lt;p&gt;Ok, página inicial completamente limpa e também uma página de currículo pronta!&lt;/p&gt;
+&lt;h2 id=&#34;postando&#34;&gt;7. Postando&lt;/h2&gt;
+&lt;p&gt;Para criar um post precisamos apenas escrever um monte de coisas legais, ne?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A resposta é: na verdade não.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Eu sou meio metódico, nã gosto de ler blogs ou sites que parecem estar sobre carregados de conteúdo misturado e com informação demais em um só lugar.&lt;/p&gt;
+&lt;p&gt;Por conta disso resolvi pesquisar mais sobre &lt;code&gt;como organizar meus posts de um jeito que outras pessoas possam entender&lt;/code&gt; e&amp;hellip; Não tive muita sorte 😅&lt;/p&gt;
+&lt;p&gt;Então como uma primeira tentativa, decidi postar como mini-publicações, como um dos meus blogs favoritos relacionados a Java faz (&lt;a href=&#34;https://www.baeldung.com/&#34; target=&#34;_blank&#34;&gt;Baeldung&lt;/a&gt;):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Criar uma estrutura básica para um post:
+&lt;ul&gt;
+&lt;li&gt;Visão Geral&lt;/li&gt;
+&lt;li&gt;Items&lt;/li&gt;
+&lt;li&gt;Conclusão&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Usar todas as ferramentas possíveis para mostrar exemplos&lt;/li&gt;
+&lt;li&gt;Disponibilizar um código funcional em um &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/&#34; target=&#34;_blank&#34;&gt;repositório&lt;/a&gt; ao final para mostrar um &lt;a href=&#34;https://jjbeto.com/&#34; target=&#34;_blank&#34;&gt;demo operacional&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Como ferramenta extra, vou criar um &lt;code&gt;Índice&lt;/code&gt; como primeiro item em cada postagem para facilitar a navegaçao.&lt;/p&gt;
+&lt;p&gt;É possível verificar no &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/index.md&#34; target=&#34;_blank&#34;&gt;código fonte desta página&lt;/a&gt;, mas vou listar os pontos que me tomaram algum tempinho extra de como fazer:&lt;/p&gt;
+&lt;h3 id=&#34;7-1-anchors-e-índine&#34;&gt;7.1. Anchors e Índine&lt;/h3&gt;
+&lt;p&gt;Não encontrei uma forma fácil/pronta pra criar esse &lt;code&gt;Índice&lt;/code&gt; no tema do Academics, mas encontrei nesse &lt;a href=&#34;https://discourse.gohugo.io/t/creating-anchors-in-hugo-pages-solved/9552&#34; target=&#34;_blank&#34;&gt;post&lt;/a&gt; um &lt;a href=&#34;https://raw.githubusercontent.com/kaushalmodi/ox-hugo/master/test/site/content/posts/link-to-headings-by-name.md&#34; target=&#34;_blank&#34;&gt;link bem interessante&lt;/a&gt; (em inglês) que me ajudaram a desenvolver uma versão inicial.&lt;/p&gt;
+&lt;p&gt;Agora o post começa assim:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;aside&amp;gt;
+&amp;lt;div class=&amp;quot;ox-hugo-toc toc&amp;quot;&amp;gt;
+&amp;lt;header&amp;gt;
+&amp;lt;h2&amp;gt;Índice&amp;lt;/h2&amp;gt;
+&amp;lt;/header&amp;gt;
+- [1. Visão Geral](#visao-geral)
+- [2. Item](#item)
+- [3. Conclusão](#conclusao)
+&amp;lt;/div&amp;gt;
+&amp;lt;/aside&amp;gt;
+&amp;lt;!--endtoc--&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dessa forma é muito simples de acompanhar a postagem em si e o código também. Se algum leitor souber de uma forma melhor (ou mais bonita) de fazer isso, &lt;strong&gt;por favor entre em contato!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Se você não sabe o que é um &lt;code&gt;HTML Anchor&lt;/code&gt;, você deveria &lt;a href=&#34;https://lmgtfy.com/?q=html+anchor&#34; target=&#34;_blank&#34;&gt;pesquisar mais&lt;/a&gt; sobre o tema 😄&lt;/p&gt;
+&lt;h3 id=&#34;7-2-lidando-com-imagens&#34;&gt;7.2. Lidando com Imagens&lt;/h3&gt;
+&lt;p&gt;Como um framework guiado por diretórios e arquivos, vou guardar todas as imagens e arquivos necessários para cada post no mesmo diretório. E possível verificar no &lt;a href=&#34;https://github.com/jjbeto/jjbeto.github.io/tree/source/content/blog/2019/11/30/developing_this_blog_with_hugo_part_1/&#34; target=&#34;_blank&#34;&gt;código fonte&lt;/a&gt; dessa postagem, e no final foi incrivelmente fácil de mostrar uma imagem:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;![This is an image](featured.jpg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;O único problema é que dessa forma a imagem e adicionada diretamente no corpo da página de forma estática, e dependendo da imagem se torna dificil ler algum conteúdo ou ver detalhes de forma correta. Entã encontrei uma forma mais interessante &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/6d92b0e8ab5512a4489173a560b27adf91c0b260/exampleSite&#34; target=&#34;_blank&#34;&gt;no diretório de exemplos&lt;/a&gt; com formas mais elegantes de exibir imagens usando código Go, para mais detalhes veja a &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#example-figure-input&#34; target=&#34;_blank&#34;&gt;documentação&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ah e também é possível referenciar imagens via URL 😄&lt;/p&gt;
+&lt;h2 id=&#34;publicando&#34;&gt;8. Publicando&lt;/h2&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;strong&gt;TL;TR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Execute o seguinte comando para gerar a versão final do seu site:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hugo --gc --minify
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dessa forma um diretório &lt;code&gt;public&lt;/code&gt; será gerado com todo o site estático pronto pra ser publicado, a última coisa que falta para completar é commitar o diretório &lt;code&gt;public&lt;/code&gt; em um repositório do GitHub com o padrão &lt;code&gt;&amp;lt;seu usuário github&amp;gt;.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Isso é tudo, você pode acessar seu site hospedado pelo GitHub Pages em &lt;code&gt;&amp;lt;seu usuário github&amp;gt;.github.io&lt;/code&gt; e ser feliz ⭐️&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Existe muito conteúdo explicando como fazer o setup de sites usando Hugo no GitHub Pages, por exemplo na própria &lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34; target=&#34;_blank&#34;&gt;documentação do Hugo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Mas para ser honesto, acho que isso deve ser feito automaticamente por algum serviço/ferramenta de &lt;a href=&#34;https://medium.com/@nirespire/what-is-cicd-concepts-in-continuous-integration-and-deployment-4fe3f6625007&#34; target=&#34;_blank&#34;&gt;CI/CD&lt;/a&gt;. Por ser um pouco mais complexo, vou deixar isso pra um &lt;strong&gt;próximo post&lt;/strong&gt;!&lt;/p&gt;
+&lt;h2 id=&#34;conclusao&#34;&gt;9. Conclusão&lt;/h2&gt;
+&lt;p&gt;Esse foi um loooooongo primeiro post, wow! No próximo vou tentar fazer um pouco mais curto (quem sabe).&lt;/p&gt;
+&lt;p&gt;Hugo é muito útil, tem uma comunidade gigante, ótimos temas e plugins e uma extensa documentação. E obiviamente uma excelente ferramenta pra se usar, muito intuitivo e facil de se acostumar pra usar.&lt;/p&gt;
+&lt;p&gt;Estou ansioso para usar novas funcionalidades, e &lt;strong&gt;esse post em Português já está marcando uma evolução do site&lt;/strong&gt;, pois estou estendendo para gerar conteúdo agora em Português tambem (o site foi pensado inicialmente pra ser somente em inglês),
+mas também quero explorar outras funcionalidades como Google Analytics e Comentários com redes sociais! Fique ligado para novidades, onde falarei sobre performance tunning no Hugo, CI/CD (com &lt;strong&gt;GitHub Actions&lt;/strong&gt;) e mais.&lt;/p&gt;</description></item></channel></rss>
