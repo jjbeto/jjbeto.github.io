@@ -108,10 +108,11 @@ appointment_url = ""
 
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
-# TODO
 contact_links = [
-  {icon = "linkedin", icon_pack = "fab", name = "Contact me", link = "https://twitter.com/jjbeto"},
-  {icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:mitsukay9?call"},
+  {icon = "linkedin", icon_pack = "fab", name = "LinkedIn", link = "https://twitter.com/jjbeto"},
+  {icon = "facebook", icon_pack = "fab", name = "Facebook", link = "https://www.facebook.com/fonseca.beto"},
+  {icon = "github", icon_pack = "fab", name = "GitHub", link = "https://www.github.com/jjbeto"},
+  {icon = "skype", icon_pack = "fab", name = "Skype", link = "skype:mitsukay9?call"},
 ]
 
 ############################
@@ -201,7 +202,6 @@ plugins_js  = []
   #   0: Disabled
   #   1: Disqus (https://disqus.com)
   #   2: Commento (https://commento.io)
-  # TODO
   engine = 0
 
   # Which page types are commentable?
@@ -254,7 +254,6 @@ plugins_js  = []
 
 ############################
 ## Marketing
-# TODO
 ############################
 [marketing]
   google_analytics = "UA-153647691-1"
