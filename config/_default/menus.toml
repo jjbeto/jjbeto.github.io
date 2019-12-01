@@ -24,7 +24,7 @@
   weight = 4
 
 [[main]]
-  name = "<i class='fas fa-rss'></i> RSS"
+  name = "RSS <i class='fas fa-rss'></i>"
   url = "index.xml"
   weight = 5
 
