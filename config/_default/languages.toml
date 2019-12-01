@@ -5,7 +5,35 @@
 # Configure the English version of the site.
 [en]
   languageCode = "en-us"
+  languageName = "English"
+  weight = 10
   # contentDir = "content/en"  # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
+[pt]
+  languageCode = "pt"
+  languageName = "Português (BR)"
+  weight = 20
+  [pt.params]
+    description = "Anotaçōes, experiencias e desafios interessantes pra compartilhar."
+  [[pt.menu.main]]
+    name   = "Início"
+    url    = "/"
+    weight = 1
+  [[pt.menu.main]]
+    name = "Blog"
+    url = "blog/"
+    weight = 2
+  [[pt.menu.main]]
+    name = "Contato"
+    url = "#contact"
+    weight = 3
+  [[pt.menu.main]]
+    name = "Currículo"
+    url = "curriculo/"
+    weight = 4
+  [[pt.menu.main]]
+    name = "RSS <i class='fas fa-rss'></i>"
+    url = "index.xml"
+    weight = 5
 
 # Uncomment the lines below to configure your website in a second language.
 #[zh]

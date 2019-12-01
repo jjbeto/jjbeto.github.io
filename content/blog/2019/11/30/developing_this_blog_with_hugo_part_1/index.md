@@ -79,7 +79,7 @@ After doing the basic installation steps according to Hugo's and Academic's webs
 hugo server
 ```
 
-{{< figure src="1-hugo_serve.png" title="Running `hugo server` on command line." >}}
+{{< figure src="1-hugo_serve.png" title="Running `hugo server` on command line" >}}
 
 Then accessing [localhost](http://localhost:1313/) you can find something like this:
 
@@ -117,7 +117,7 @@ According to [Hugo's docs](https://gohugo.io/content-management/organization/) t
         └── second.md      // <- https://example.com/quote/second/
 ```
 
-So I decided to try to bring some sense to this `chaos` using simple pattern: on `posts` folder I'm going to organize the posts using the date structure `year/month/day` and put all related data to that post in this folder, if I want to add multiple posts in the same day I can also controll it using `post-path/index.md` pattern. I'm also going to rename folder `posts` to `blog` (in my sense it is more meaningful, also url-wise). So the blog content will be organized like that:
+So I decided to try to bring some sense to this `chaos` using simple pattern: on `posts` folder I'm going to organize the posts using the date structure `year/month/day` and put all related data to that post in this folder, if I want to add multiple posts in the same day I can also control it using `post-path/index.md` pattern. I'm also going to rename folder `posts` to `blog` (in my sense it is more meaningful, also url-wise). So the blog content will be organized like that:
 
 ```
 .
@@ -173,11 +173,11 @@ type: "widget_page"
 5. Duplicate `./content/resume/accomplishments.md` to `./content/resume/certifications.md` to reuse the feature, separating certificates from on-line courses
 6. Fullfil the data! Changing the data on `./content/authors/admin/_index.md` (which I renamed to `./content/authors/jjbeto/_index.md`) and updating the other pages on `.content/resume/` with custom data is enought to have a really nice page already
 
-{{< figure src="3-resume-view.png" title="Resume initial page." >}}
+{{< figure src="3-resume-view.png" title="Resume initial page" >}}
 
 Another small CSS trick is [here](https://varya.me/en/posts/pseudo-tag-cloud-css/): creating a small tag cloud for my experience stack list:
 
-{{< figure src="4-cloud-tags.png" title="Cloud tags." >}}
+{{< figure src="4-cloud-tags.png" title="Cloud tags" >}}
 
 How to do it here? You can check the [source code](https://github.com/jjbeto/jjbeto.github.io/tree/source/content/resume/experience.md), but to make it easier, you will need 2 things:
 
@@ -203,9 +203,7 @@ How to do it here? You can check the [source code](https://github.com/jjbeto/jjb
 </style>
 ```
 
-Another thing that I want to add is [devicons](http://konpa.github.io/devicon/) to show , so that I can list the tech stack everywhere!
-
-To do so, I've added to `./themes/academic/layout/partials/site_head.html` where all CSS are imported and add:
+Another thing that I want to add is [devicons](http://konpa.github.io/devicon/) so that I can list the tech stack that I'm using!
 
 To do so, I've added to the end of `./content/resume/skills.md` the ref style:
 
@@ -267,7 +265,7 @@ To create a post we just need to write a lot of cool stuff and post it, right?
 
 **The answer is: no, not really.**
 
-I'm kind of methodic, I don't like to read blogs or sites that looks too flooded with information and mainly: I hate to look at a content and fill confused to follow up. Well I'm sure that I'm not a good writer myself, and English is not my mother language too, so it's kinda complicated to get things done whitout too much mess.
+I'm kind of methodic, I don't like to read blogs or sites that looks too flooded with information and mainly: I hate to look at a content and fill confused to follow up. Well I'm sure that I'm not a good writer myself, and English is not my mother language too, so it's kinda complicated to get things done without too much mess.
 
 For that I did some research about `how to organize my posts in a way that somebody else can understands it` and... No lucky 😅
 

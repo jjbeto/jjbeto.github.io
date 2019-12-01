@@ -5,7 +5,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "Resources and Notes"
+title = "Recursos e Anotaçōes"
 translationKey = "hero"
 
 # Hero image (optional). Enter filename of an image in the `static/img/` folder.
@@ -39,21 +39,21 @@ hero_media = "homepage/question.jpg"
 #   Remove a link/note by deleting a cta/note block.
 [cta]
   url = "/blog/"
-  label = "Get Started"
+  label = "Começar"
   icon_pack = "fas"
   icon = "rss"
   
 [cta_alt]
   url = "/resume/"
-  label = "about me"
+  label = "sobre mim"
 
 # Note. An optional note to show underneath the links.
 [cta_note]
-  label = '<a href="https://github.com/jjbeto/jjbeto.github.io/tree/source" data-repo="jjbeto/jjbeto.github.io" target="blank">[go to source code]</a>'
+  label = '<a href="https://github.com/jjbeto/jjbeto.github.io/tree/source" data-repo="jjbeto/jjbeto.github.io" target="blank">[vá para o código fonte]</a>'
 +++
 
-**I Think That The Best Way to Build Knowledge is Studying and Teaching**
+**Acho Que A Melhor Forma De Construir Conhecimento é Estudando e Ensinando**
 
-So Let's **Give It A Try**
+Então **vamos tentar**
 
 <span style="text-shadow: none;"><a class="github-button" href="https://github.com/jjbeto/jjbeto.github.io" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this on GitHub">Star</a><script async defer src="https://buttons.github.io/buttons.js"></script></span>
