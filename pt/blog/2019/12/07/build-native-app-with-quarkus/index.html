@@ -1,0 +1,169 @@
+<!doctype html><html lang=pt><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Source Themes Academic 4.6.2"><meta name=author content="Beto Fonseca"><meta name=description content="Uma aplicação simples de Echo usando resteasy e swagger com quarkus"><link rel=alternate hreflang=en href=https://jjbeto.com/blog/2019/12/07/build-native-app-with-quarkus/><link rel=alternate hreflang=pt href=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/><meta name=theme-color content="rgb(0, 136, 204)"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css crossorigin=anonymous title=hl-light><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css crossorigin=anonymous title=hl-dark disabled><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap"><link rel=stylesheet href=/css/academic.css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-153647691-1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+function trackOutboundLink(url){gtag('event','click',{'event_category':'outbound','event_label':url,'transport_type':'beacon','event_callback':function(){document.location=url;}});console.debug("Outbound link clicked: "+url);}
+function onClickCallback(event){if((event.target.tagName!=='A')||(event.target.host===window.location.host)){return;}
+trackOutboundLink(event.target);}
+gtag('js',new Date());gtag('config','UA-153647691-1',{});document.addEventListener('click',onClickCallback,false);</script><link rel=manifest href=/pt/index.webmanifest><link rel=icon type=image/png href=/img/icon-32.png><link rel=apple-touch-icon type=image/png href=/img/icon-192.png><link rel=canonical href=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/><meta property="twitter:card" content="summary_large_image"><meta property="twitter:site" content="@jjbeto"><meta property="twitter:creator" content="@jjbeto"><meta property="og:site_name" content="/jjbeto"><meta property="og:url" content="https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/"><meta property="og:title" content="Construindo uma aplicação nativa com Quarkus | /jjbeto"><meta property="og:description" content="Uma aplicação simples de Echo usando resteasy e swagger com quarkus"><meta property="og:image" content="https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/featured.jpg"><meta property="twitter:image" content="https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/featured.jpg"><meta property="og:locale" content="pt"><meta property="article:published_time" content="2019-12-07T14:00:00&#43;00:00"><meta property="article:modified_time" content="2019-12-07T14:00:00&#43;00:00"><title>Construindo uma aplicação nativa com Quarkus | /jjbeto</title></head><body id=top data-spy=scroll data-offset=70 data-target=#TableOfContents class=dark><aside class=search-results id=search><div class=container><section class=search-header><div class="row no-gutters justify-content-between mb-3"><div class=col-6><h1>Pesquisar</h1></div><div class="col-6 col-search-close"><a class=js-search href=#><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a></div></div><div id=search-box><input name=q id=search-query placeholder=Pesquisar... autocapitalize=off autocomplete=off autocorrect=off spellcheck=false type=search></div></section><section class=section-search-results><div id=search-hits></div></section></div></aside><nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id=navbar-main><div class=container><a class=navbar-brand href=/pt/>/jjbeto</a>
+<button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar-content aria-controls=navbar aria-expanded=false aria-label="Alterar navegação">
+<span><i class="fas fa-bars"></i></span></button><div class="navbar-collapse main-menu-item collapse justify-content-end" id=navbar-content><ul class="navbar-nav d-md-inline-flex"><li class=nav-item><a class="nav-link active" href=/pt/><span>Início</span></a></li><li class=nav-item><a class="nav-link active" href=/pt/blog/><span>Blog</span></a></li><li class=nav-item><a class=nav-link href=/pt/#contact><span>Contato</span></a></li><li class=nav-item><a class=nav-link href=/pt/curriculo/><span>Currículo</span></a></li><li class=nav-item><a class=nav-link href=/pt/index.xml><span>RSS <i class="fas fa-rss"></i></span></a></li></ul></div><ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2"><li class=nav-item><a class="nav-link js-search" href=#><i class="fas fa-search" aria-hidden=true></i></a></li><li class=nav-item><a class="nav-link js-dark-toggle" href=#><i class="fas fa-moon" aria-hidden=true></i></a></li><li class="nav-item dropdown i18n-dropdown"><a href=# class="nav-link dropdown-toggle" data-toggle=dropdown aria-haspopup=true><i class="fas fa-globe mr-1" aria-hidden=true></i><span class="d-none d-lg-inline">Português</span></a><div class=dropdown-menu><div class="dropdown-item i18n-active font-weight-bold"><span>Português</span></div><a class=dropdown-item href=/blog/2019/12/07/build-native-app-with-quarkus/><span>English</span></a></div></li></ul></div></nav><article class=article><div class="article-container pt-3"><h1>Construindo uma aplicação nativa com Quarkus</h1><p class=page-subtitle>Uma aplicação simples de Echo usando resteasy e swagger com quarkus</p><div class=article-metadata><div><span><a href=/pt/authors/jjbeto/>Beto Fonseca</a></span></div><span class=article-date>Dec 7, 2019</span></div></div><div class="article-header article-container featured-image-wrapper mt-4 mb-4" style=max-width:720px;max-height:315px><div style=position:relative><img src=/pt/blog/2019/12/07/build-native-app-with-quarkus/featured_huef66ca052b2e72c07903f112c1ea2c8b_10619_720x0_resize_q90_lanczos.jpg alt class=featured-image>
+<span class=article-header-caption>Créditos: <a href=https://onextrapixel.com/best-atom-packages-web-developers/ target=_blank><strong>Atom</strong></a></span></div></div><div class=article-container><div class=article-style><p><aside><div class="ox-hugo-toc toc"><header><h2>Índice</h2></header>- <a href=#visao-geral>1. Visão Geral</a>
+- <a href=#echo-app>2. Aplicativo Echo</a>
+- <a href=#geracao-do-projeto>3. Geração do Projeto</a>
+- <a href=#swagger>4. Swagger</a>
+- <a href=#dockerhub>5. DockerHub</a>
+- <a href=#conclusao>6. Conclusão</a></div></aside></p><h2 id=overview>1. Overview</h2><p>Eu quero falar de 88Microserviços**, mas então eu percebi que na verdade eu não muito material publicado que eu possa usar pra isso, como <strong>um microserviço</strong>.</p><p>Por conta disso eu decidi criar um pequeno microserviço do zero, o qual eu possa reusar em futuros artigos pra fazer mais coisas legais 😝</p><p>Pra isso eu escolhi um framework muito falado hoje em dia, que é bem interessante: <a href=https://quarkus.io/ target=_blank>Quarkus</a>.</p><p>A idéia é criar um serviço simples de echo: eu mando um texto e a API responde o mesmo texto em PLAINTEXT. Além disso eu adicionarei um parametro de time pra decidir em quanto tempo eu quero que essa resposta seja retornada.</p><h2 id=echo-app>2. Aplicativo Echo</h2><p>Um endpoint REST simples que retorna o mesmo texto que eu enviar como parametro. Também deve ser possível pedir um tempo de espera em milisegundos pra API responder.</p><p>Você pode encontrar o código fonte completo deste exemplo no meu <a href=https://github.com/jjbeto/echo target=_blank>GitHub</a>, ou você também pode:</p><ul><li>Baixar a imagem diretamente do <a href=https://hub.docker.com/r/jjbeto/echo target=_blank>DockerHub</a></li></ul><h2 id=geracao-do-projeto>3. Geração do Projeto</h2><p>Eu segui as etapas descritas na documentação do <a href=https://quarkus.io/guides/openapi-swaggerui target=_blank>Quarkus</a>:</p><ol><li><p>Criar o projeto base:</p><pre><code class=language-bash>mvn io.quarkus:quarkus-maven-plugin:1.0.1.Final:create \
+-DprojectGroupId=com.jjbeto \
+-DprojectArtifactId=echo \
+-DclassName=com.jjbeto.echo.EchoResource \
+-Dpath=/echo \
+-Dextensions=resteasy-jsonb
+</code></pre></li><li><p>Removi .mvn do git: adicionei <code>.mvn</code> no <code>.gitignore</code></p></li><li><p>Criar a lógica da aplicação: retornar o texto parametrizado como PLAINTEXT e aceitar um query parameter como tempo de espera antes da API retornar a resposta.</p><ul><li>Mudar o path root pra ser da própria aplicação;</li><li>Retornar a mensagem no path parameter de volta para o cliente;</li><li>Adicionar um tempo de espera de acordo com o query parameter;</li></ul></li></ol><h2 id=swagger>4. Swagger</h2><p>Vamos tornar essa API mais amigável pra ser consumida por outras aplicaçōes, adicionando Swagger e colocando algumas descriçōes, explicando pra que serve cada parâmetro. Com Quarkus isso é bem facil e pode ser encontrado como fazer diretamente na <a href=https://quarkus.io/guides/openapi-swaggerui target=_blank>documentação</a>.</p><p>Primeiramente precisamos adicionar o Swagger ao projeto, executando o comando a seguir diretamente na raiz do projeto:</p><pre><code class=language-bash>./mvnw quarkus:add-extension -Dextensions=&quot;openapi&quot;
+</code></pre><p>Mas eu não gosto do endpoint gerado automaticamente <code>/openapi</code> 😒, então eu vou mudar para <code>/swagger</code>. Pra isso basta mudar uma propriedade em <code>application.properties</code>:</p><pre><code class=language-properties>quarkus.smallrye-openapi.path=/swagger
+</code></pre><p>O endpoint <code>/swagger</code> vai fornecer um arquivo Yaml descrevendo a API.</p><p>Eu também quero ativar o SwaggerUI:</p><pre><code class=language-properties>quarkus.swagger-ui.always-include=true
+</code></pre><p>O endpoint padrão para o SwaggerUI é <a href=http://localhost:8080/swagger-ui target=_blank>http://localhost:8080/swagger-ui</a>.</p><p>Muito bom! Agora vamos seguir em frente e adicionar algumas descriçōes para que usuários da API saibam como utiliza-la. De acordo com a <a href=https://swagger.io/specification/ target=_blank>especificação</a> nós precisamos usar um arquivo <code>openapi.yml</code> para adicionar dados customizados:</p><ol><li>Acesse <code>http://localhost:8080/swagger</code> para baixar o arquivo <code>openapi.yml</code> atualizado</li><li>Salve <code>openapi.yml</code> no diretório <code>./src/main/resources/META-INF</code></li><li>Adicione algumas descriçōes e informaçōes sobre a API</li></ol><p>Agora você pode verificar novamente o endereço local <a href=http://localhost:8080/swagger-ui target=_blank>http://localhost:8080/swagger-ui</a> e verifique o resultado 😃</p><h2 id=dockerhub>5. DockerHub</h2><p>Eu quero que seja possível que qualquer um possa baixar a imagem diretamente do DockerHub.</p><h3 id=construindo-uma-imagem-nativa>Construindo uma Imagem Nativa</h3><p>Quarkus permite a criação de um app completamente nativo, onde uma JVM não é necessária. Isso é incrivel principalmente quando se trata de aplicaçōes simples como o <strong>Echo</strong>, por que a aplicação fica muito rápida e a imagem para execução muito pequena!</p><p>Para construir a imagem nativa nós precisamos de alguns pre-requisitos conforme mencionado na <a href=https://quarkus.io/guides/building-native-image target=_blank>documentação do Quarkus</a>, por favor siga estes passos antes de continuar.</p><p>Notas: fique atento da versão do GraalVM, se a que você esta instalando é compatível com a versão atual do Quarkus. O Quarkus está sempre em evolução e fica o mais próximo possível das últimas atualizaçōes do GraalVM, mas é preciso verificar se a versão atual é compatível: no momento que estou escrevendo este artigo o GraalVM está na versão 19.3.0.r11 enquanto o Quarkus é compatível apenas com <strong>GraalVM 19.2.1</strong>.</p><p>Depois de instalar o GraalVM (eu usei <a href=https://sdkman.io/ target=_blank>sdkman</a>), Docker (ou podman) e as suas dependencias, você pode construir uma imagem nativa com o comando:</p><pre><code class=language-bash>./mvnw package -Pnative -Dquarkus.native.container-build=true
+</code></pre><p>De acordo com o <strong>Quarkus</strong> a construção de uma imagem é muito simples:</p><p><img src=https://quarkus.io/guides/images/native-executable-process.png alt="Quarkus Build Process"></p><p>TL;TR é exatamente como construir um executável Jar com todas as suas dependencias (fat jar), mas a execução para construir uma imagem nativa demora mais tempo pra executar e custa mais recursos da máquina.</p><h4 id=notas-importantes-sobre-o-processo-de-construção>Notas importantes sobre o processo de construção</h4><p>Ao construir a imagem usando Docker no meu Mac, eu recebi este erro:</p><pre><code class=language-bash>docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
+[echo-1.0-SNAPSHOT-runner:25]    classlist:  12,165.10 ms
+[echo-1.0-SNAPSHOT-runner:25]        (cap):   1,720.23 ms
+[echo-1.0-SNAPSHOT-runner:25]        setup:   3,699.11 ms
+14:23:23,903 INFO  [org.jbo.threads] JBoss Threads version 3.0.0.Final
+[echo-1.0-SNAPSHOT-runner:25]   (typeflow):  17,087.39 ms
+[echo-1.0-SNAPSHOT-runner:25]    (objects):  12,944.17 ms
+[echo-1.0-SNAPSHOT-runner:25]   (features):     489.73 ms
+[echo-1.0-SNAPSHOT-runner:25]     analysis:  31,843.79 ms
+[echo-1.0-SNAPSHOT-runner:25]     (clinit):     622.07 ms
+[echo-1.0-SNAPSHOT-runner:25]     universe:   1,768.77 ms
+[echo-1.0-SNAPSHOT-runner:25]      (parse):  42,885.71 ms
+[echo-1.0-SNAPSHOT-runner:25]     (inline):  49,278.76 ms
+[echo-1.0-SNAPSHOT-runner:25]    (compile):  53,007.49 ms
+[echo-1.0-SNAPSHOT-runner:25]      compile: 158,081.96 ms
+Error: Image build request failed with exit status 137
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:55 min
+[INFO] Finished at: 2019-12-07T15:26:48+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal io.quarkus:quarkus-maven-plugin:1.0.1.Final:build (default) on project echo: Failed to build a runnable JAR: Failed to augment application classes: Build failure: Build failed due to errors
+[ERROR]         [error]: Build step io.quarkus.deployment.pkg.steps.NativeImageBuildStep#build threw an exception: java.lang.RuntimeException: Failed to build native image
+[ERROR]         at io.quarkus.deployment.pkg.steps.NativeImageBuildStep.build(NativeImageBuildStep.java:289)
+[ERROR]         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR]         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[ERROR]         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[ERROR]         at java.lang.reflect.Method.invoke(Method.java:498)
+[ERROR]         at io.quarkus.deployment.ExtensionLoader$1.execute(ExtensionLoader.java:941)
+[ERROR]         at io.quarkus.builder.BuildContext.run(BuildContext.java:415)
+[ERROR]         at io.quarkus.builder.BuildContext$$Lambda$109.0000000055C01130.run(Unknown Source)
+[ERROR]         at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+[ERROR]         at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2011)
+[ERROR]         at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1535)
+[ERROR]         at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1426)
+[ERROR]         at java.lang.Thread.run(Thread.java:819)
+[ERROR]         at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+[ERROR] Caused by: java.lang.RuntimeException: Image generation failed
+[ERROR]         at io.quarkus.deployment.pkg.steps.NativeImageBuildStep.build(NativeImageBuildStep.java:278)
+[ERROR]         ... 13 more
+[ERROR] -&gt; [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+</code></pre><p>Eu encontrei uma issue no <a href=https://github.com/quarkusio/quarkus/issues/1140 target=_blank>GitHub do Quarkus</a> relativo a esse erro e, quando mudei a memória do meu Docker para 3GB (ao invés dos 2GB padrão), o build funcionou:</p><pre><code class=language-bash>docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
+[echo-1.0-SNAPSHOT-runner:24]    classlist:   8,587.26 ms
+[echo-1.0-SNAPSHOT-runner:24]        (cap):   1,512.26 ms
+[echo-1.0-SNAPSHOT-runner:24]        setup:   3,112.68 ms
+14:29:25,687 INFO  [org.jbo.threads] JBoss Threads version 3.0.0.Final
+[echo-1.0-SNAPSHOT-runner:24]   (typeflow):  19,795.33 ms
+[echo-1.0-SNAPSHOT-runner:24]    (objects):  17,973.88 ms
+[echo-1.0-SNAPSHOT-runner:24]   (features):     486.83 ms
+[echo-1.0-SNAPSHOT-runner:24]     analysis:  39,734.95 ms
+[echo-1.0-SNAPSHOT-runner:24]     (clinit):     582.32 ms
+[echo-1.0-SNAPSHOT-runner:24]     universe:   2,178.24 ms
+[echo-1.0-SNAPSHOT-runner:24]      (parse):   5,333.97 ms
+[echo-1.0-SNAPSHOT-runner:24]     (inline):   9,494.69 ms
+[echo-1.0-SNAPSHOT-runner:24]    (compile):  29,119.41 ms
+[echo-1.0-SNAPSHOT-runner:24]      compile:  46,351.15 ms
+[echo-1.0-SNAPSHOT-runner:24]        image:   3,879.22 ms
+[echo-1.0-SNAPSHOT-runner:24]        write:   2,057.79 ms
+[echo-1.0-SNAPSHOT-runner:24]      [total]: 106,328.41 ms
+[INFO] [io.quarkus.deployment.QuarkusAugmentor] Quarkus augmentation completed in 111589ms
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:00 min
+[INFO] Finished at: 2019-12-07T15:30:59+01:00
+[INFO] ------------------------------------------------------------------------
+</code></pre><h4 id=preparar-a-imagem>Preparar a Imagem</h4><p>Para criar a imagem localmente podemos executar o seguinte comando:</p><pre><code class=language-bash>docker build -f src/main/docker/Dockerfile.native -t jjbeto/echo .
+</code></pre><p>O resultado:</p><pre><code class=language-bash>Sending build context to Docker daemon  36.77MB
+Step 1/6 : FROM registry.access.redhat.com/ubi8/ubi-minimal
+latest: Pulling from ubi8/ubi-minimal
+645c2831c08a: Pull complete 
+5e98065763a5: Pull complete 
+Digest: sha256:32fb8bae553bfba2891f535fa9238f79aafefb7eff603789ba8920f505654607
+Status: Downloaded newer image for registry.access.redhat.com/ubi8/ubi-minimal:latest
+ ---&gt; 469119976c56
+Step 2/6 : WORKDIR /work/
+ ---&gt; Running in 4f74acf2fa46
+Removing intermediate container 4f74acf2fa46
+ ---&gt; fc9bee94a0d0
+Step 3/6 : COPY target/*-runner /work/application
+ ---&gt; b9a029618b01
+Step 4/6 : RUN chmod 775 /work
+ ---&gt; Running in a37dd1eda18d
+Removing intermediate container a37dd1eda18d
+ ---&gt; a686c7dba3ed
+Step 5/6 : EXPOSE 8080
+ ---&gt; Running in 21f6e36ba8cb
+Removing intermediate container 21f6e36ba8cb
+ ---&gt; 5d0d75543315
+Step 6/6 : CMD [&quot;./application&quot;, &quot;-Dquarkus.http.host=0.0.0.0&quot;]
+ ---&gt; Running in 8a2dd88f45b2
+Removing intermediate container 8a2dd88f45b2
+ ---&gt; 33592d7cd99d
+Successfully built 33592d7cd99d
+Successfully tagged jjbeto/echo:latest
+</code></pre><p>Se você listar as imagens locais:</p><pre><code class=language-bash>docker images
+REPOSITORY       TAG                 IMAGE ID            CREATED             SIZE
+jjbeto/echo      latest              33592d7cd99d        12 seconds ago      142MB
+</code></pre><p>Agora podemos finalmente executar nossa imagem:</p><pre><code class=language-bash>docker run -i --rm -p 8080:8080 jjbeto/echo
+</code></pre><p>E o resultado:</p><pre><code class=language-bash>2019-12-07 14:48:13,719 INFO  [io.quarkus] (main) echo 1.0-SNAPSHOT (running on Quarkus 1.0.1.Final) started in 0.012s. Listening on: http://0.0.0.0:8080
+2019-12-07 14:48:13,719 INFO  [io.quarkus] (main) Profile prod activated. 
+2019-12-07 14:48:13,719 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy, resteasy-jsonb, smallrye-openapi, swagger-ui]
+</code></pre><p>Sensacional! E se acessarmos o localhost:</p><figure><a data-fancybox href=localhost-8080.png data-caption="Localhost executando na porta 8080"><img src=localhost-8080.png alt></a><figcaption>Localhost executando na porta 8080</figcaption></figure><p>Mas&hellip; A imagem ainda é muito grande! 142MB não é um bom tamanho legal pra um serviço tão pequeno, certo?</p><p>Eu mudei o arquivo <code>.src/main/docker/Dockerfile.native</code> para usar o mínimo necessário de arquivos da imagem <code>debian:10-slim</code>, seguindo <a href=https://github.com/quarkusio/quarkus/issues/326 target=_blank>esse conselho</a>:</p><pre><code>## Stage 1 : intermediate container to copy the needed dynamic libraries
+FROM debian:10-slim AS debian
+
+## Stage 2 : create the final docker image
+FROM scratch
+COPY target/*-runner /bin/app
+COPY --from=debian /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2
+COPY --from=debian /lib/x86_64-linux-gnu/ld-2.28.so \
+    /lib/x86_64-linux-gnu/libm.so.6 /lib/x86_64-linux-gnu/libm-2.28.so \
+    /lib/x86_64-linux-gnu/libpthread.so.0 /lib/x86_64-linux-gnu/libpthread-2.28.so \
+    /lib/x86_64-linux-gnu/libdl.so.2 /lib/x86_64-linux-gnu/libdl-2.28.so \
+    /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so.1.2.11 \
+    /lib/x86_64-linux-gnu/librt.so.1 /lib/x86_64-linux-gnu/librt-2.28.so \
+    /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libc-2.28.so \
+    /lib/x86_64-linux-gnu/
+EXPOSE 8080
+CMD [&quot;/bin/app&quot;, &quot;-Dquarkus.http.host=0.0.0.0&quot;]
+</code></pre><p>E agora a minha imagem tem um tamanho mais interessante: 44.5MB</p><pre><code class=language-bash>docker images
+REPOSITORY        TAG                 IMAGE ID            CREATED             SIZE
+jjbeto/echo       latest              3d7de934bcd4        29 seconds ago      44.5MB
+</code></pre><p>Mas o resultado final no DockerHub é diferente:</p><figure><a data-fancybox href=dockerhub.png data-caption="Imagem no DockerHub"><img src=dockerhub.png alt></a><figcaption>Imagem no DockerHub</figcaption></figure><p>15MB?? Agora sim!! 😎</p><p>Você sabe como torná-la ainda menor? Por favor me manda uma mensagem! 📫</p><h4 id=como-publicar-no-dockerhub>Como Publicar no DockerHub?</h4><p>Para publicar a imagem no DockerHub é muito simples:</p><ol><li>Login com o comando <code>docker login</code> e usar seu usuário/senha</li><li>Enviar sua imagem local para o repositório remoto com o comando <code>docker push &lt;image_name&gt;</code>, no meu caso <code>docker push jjbeto/echo</code></li><li>Vá até o <a href=https://hub.docker.com/r/jjbeto/echo target=_blank>DockerHub</a> e verifique o resultado 🎉</li></ol><h2 id=conclusao>6. Conclusão</h2><p>Quarkus é uma ferramenta incrível e renova mais uma vez o poder do Java no mundo atual, na minha opinião. É fácio de usar, já possui uma grande lista de ferramentas que podem ser usadas em conjunto, como Hibernate, Vert.x e MicroProfile.</p><p>Mas por favor não se engane, Quarkus não é pra todo mundo e nem pra todo projeto! Como é construido usando GraalVM, não é possível usar qualquer lib que você encontrar, ou você pode encontrar problemas como reflections por exemplo.</p><p>Se você puder usar as libs padrões do Quarkus, com certeza ele é um framework pra se levar em consideração no seu projeto.</p><p>Sobre o Echo App, Quarkus foi uma boa escolha! O app foi gerado já pensando um pouco mais na frente, quando eu for fazer alguns testes com ambientes de microserviços, fiquem ligados! 😎</p></div><div class=article-tags><a class="badge badge-light" href=/pt/tags/java/>Java</a>
+<a class="badge badge-light" href=/pt/tags/quarkus/>Quarkus</a>
+<a class="badge badge-light" href=/pt/tags/tutorial/>Tutorial</a></div><div class=share-box aria-hidden=true><ul class=share><li><a href="https://twitter.com/intent/tweet?url=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/&amp;text=Construindo%20uma%20aplica%c3%a7%c3%a3o%20nativa%20com%20Quarkus" target=_blank rel=noopener class=share-btn-twitter><i class="fab fa-twitter"></i></a></li><li><a href="https://www.facebook.com/sharer.php?u=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/&amp;t=Construindo%20uma%20aplica%c3%a7%c3%a3o%20nativa%20com%20Quarkus" target=_blank rel=noopener class=share-btn-facebook><i class="fab fa-facebook"></i></a></li><li><a href="mailto:?subject=Construindo%20uma%20aplica%c3%a7%c3%a3o%20nativa%20com%20Quarkus&amp;body=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/" target=_blank rel=noopener class=share-btn-email><i class="fas fa-envelope"></i></a></li><li><a href="https://www.linkedin.com/shareArticle?url=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/&amp;title=Construindo%20uma%20aplica%c3%a7%c3%a3o%20nativa%20com%20Quarkus" target=_blank rel=noopener class=share-btn-linkedin><i class="fab fa-linkedin-in"></i></a></li><li><a href="https://web.whatsapp.com/send?text=Construindo%20uma%20aplica%c3%a7%c3%a3o%20nativa%20com%20Quarkus%20https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/" target=_blank rel=noopener class=share-btn-whatsapp><i class="fab fa-whatsapp"></i></a></li><li><a href="https://service.weibo.com/share/share.php?url=https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/&amp;title=Construindo%20uma%20aplica%c3%a7%c3%a3o%20nativa%20com%20Quarkus" target=_blank rel=noopener class=share-btn-weibo><i class="fab fa-weibo"></i></a></li></ul></div><div class="media author-card content-widget-hr"><img class="portrait mr-3" src=/pt/authors/jjbeto/avatar_hu1bd2484737df52e46ef01584d2783a33_69758_250x250_fill_q90_lanczos_center.jpg alt=Avatar><div class=media-body><h5 class=card-title><a href=https://jjbeto.com/>Beto Fonseca</a></h5><h6 class=card-subtitle>Desenvolvedor Java &amp; Entusiasta de Tecnologia</h6><p class=card-text>Meus interesses incluem Solução &amp; Arquitetura de Sistemas, Automação &amp; DevOps e Cryptomoedas &amp; Análise Técnica.</p><ul class=network-icon aria-hidden=true><li><a href=mailto:jjbeto@gmail.com><i class="fas fa-envelope"></i></a></li><li><a href=https://twitter.com/jjbeto target=_blank rel=noopener><i class="fab fa-twitter"></i></a></li><li><a href=https://github.com/jjbeto target=_blank rel=noopener><i class="fab fa-github"></i></a></li><li><a href=https://www.linkedin.com/in/jouberto/ target=_blank rel=noopener><i class="fab fa-linkedin"></i></a></li><li><a href=https://www.facebook.com/fonseca.beto target=_blank rel=noopener><i class="fab fa-facebook"></i></a></li></ul></div></div><div class="article-widget content-widget-hr"><h3>Relacionados</h3><ul><li><a href=/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/>Setup Completo Para Este Site - Parte 1</a></li></ul></div></div></article><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.3.1/mermaid.min.js integrity="sha256-vOIuDSYDirTfyr+S2MjFnhOz6Rgiz4ODFAHATG0rFxw=" crossorigin=anonymous title=mermaid></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script><script>const code_highlighting=true;</script><script>const search_config={"indexURI":"/pt/index.json","minLength":1,"threshold":0.3};const i18n={"no_results":"Sem resultados","placeholder":"Pesquisar...","results":"Resultados encontrados"};const content_type={'post':"Posts",'project':"Projetos",'publication':"Publicações",'talk':"Palestras"};</script><script id=search-hit-fuse-template type=text/x-template>
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script><script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script><script src=/js/academic.min.bcfae8267aba63cc55af53a503896bd9.js></script><div class=container><footer class=site-footer><p class=powered-by>Powered by the
+<a href=https://sourcethemes.com/academic/ target=_blank rel=noopener>Academic theme</a> for
+<a href=https://gohugo.io target=_blank rel=noopener>Hugo</a>.
+<span class=float-right aria-hidden=true><a href=# class=back-to-top><span class=button_icon><i class="fas fa-chevron-up fa-2x"></i></span></a></span></p></footer></div><div id=modal class="modal fade" role=dialog><div class=modal-dialog><div class=modal-content><div class=modal-header><h5 class=modal-title>Citação</h5><button type=button class=close data-dismiss=modal aria-label=Close>
+<span aria-hidden=true>&times;</span></button></div><div class=modal-body><pre><code class="tex hljs"></code></pre></div><div class=modal-footer><a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank><i class="fas fa-copy"></i>Copiar</a>
+<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank><i class="fas fa-download"></i>Download</a><div id=modal-error></div></div></div></div></div></body></html>

@@ -1,34 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Quarkus | /jjbeto</title><link>https://jjbeto.com/tags/quarkus/</link><atom:link href="https://jjbeto.com/tags/quarkus/index.xml" rel="self" type="application/rss+xml"/><description>Quarkus</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 07 Dec 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/avatar.jpg</url><title>Quarkus</title><link>https://jjbeto.com/tags/quarkus/</link></image><item><title>Build Native App with Quarkus</title><link>https://jjbeto.com/blog/2019/12/07/build-native-app-with-quarkus/</link><pubDate>Sat, 07 Dec 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/blog/2019/12/07/build-native-app-with-quarkus/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java | /jjbeto</title><link>https://jjbeto.com/pt/tags/java/</link><atom:link href="https://jjbeto.com/pt/tags/java/index.xml" rel="self" type="application/rss+xml"/><description>Java</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>pt</language><lastBuildDate>Sat, 07 Dec 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/avatar.jpg</url><title>Java</title><link>https://jjbeto.com/pt/tags/java/</link></image><item><title>Construindo uma aplicação nativa com Quarkus</title><link>https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/</link><pubDate>Sat, 07 Dec 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/</guid><description>
 &lt;p&gt;&lt;aside&gt;
 &lt;div class=&#34;ox-hugo-toc toc&#34;&gt;
 &lt;header&gt;
-&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;h2&gt;Índice&lt;/h2&gt;
 &lt;/header&gt;
-- &lt;a href=&#34;#overview&#34;&gt;1. Overview&lt;/a&gt;
-- &lt;a href=&#34;#echo-app&#34;&gt;2. Echo App&lt;/a&gt;
-- &lt;a href=&#34;#project-generation&#34;&gt;3. Project Generation&lt;/a&gt;
+- &lt;a href=&#34;#visao-geral&#34;&gt;1. Visão Geral&lt;/a&gt;
+- &lt;a href=&#34;#echo-app&#34;&gt;2. Aplicativo Echo&lt;/a&gt;
+- &lt;a href=&#34;#geracao-do-projeto&#34;&gt;3. Geração do Projeto&lt;/a&gt;
 - &lt;a href=&#34;#swagger&#34;&gt;4. Swagger&lt;/a&gt;
 - &lt;a href=&#34;#dockerhub&#34;&gt;5. DockerHub&lt;/a&gt;
-- &lt;a href=&#34;#conclusion&#34;&gt;6. Conclusion&lt;/a&gt;
+- &lt;a href=&#34;#conclusao&#34;&gt;6. Conclusão&lt;/a&gt;
 &lt;/div&gt;
 &lt;/aside&gt;
 &lt;!--endtoc--&gt;&lt;/p&gt;
 &lt;h2 id=&#34;overview&#34;&gt;1. Overview&lt;/h2&gt;
-&lt;p&gt;I want to talk about &lt;strong&gt;Microservices&lt;/strong&gt;, but then I just found out that actually I don&amp;rsquo;t have much opensource material published, like &lt;strong&gt;one microservice alone&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Because of that I&amp;rsquo;ve decided to create one from scratch, which I can reuse in next articles for cool stuff 😝&lt;/p&gt;
-&lt;p&gt;For this I just choose a really interesting project to use as base: &lt;a href=&#34;https://quarkus.io/&#34; target=&#34;_blank&#34;&gt;Quarkus&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The idea is to create a simple Echo service, which I&amp;rsquo;m able to set a timer to get back a response.&lt;/p&gt;
-&lt;h2 id=&#34;echo-app&#34;&gt;2. Echo App&lt;/h2&gt;
-&lt;p&gt;A simple REST endpoint that return the same text provided as parameter. It&amp;rsquo;s also possible to ask for a waiting time to get responses.&lt;/p&gt;
-&lt;p&gt;You can find the complete source code of this sample &lt;a href=&#34;https://github.com/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;on my GitHub&lt;/a&gt;, and you can also:&lt;/p&gt;
+&lt;p&gt;Eu quero falar de 88Microserviços**, mas então eu percebi que na verdade eu não muito material publicado que eu possa usar pra isso, como &lt;strong&gt;um microserviço&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Por conta disso eu decidi criar um pequeno microserviço do zero, o qual eu possa reusar em futuros artigos pra fazer mais coisas legais 😝&lt;/p&gt;
+&lt;p&gt;Pra isso eu escolhi um framework muito falado hoje em dia, que é bem interessante: &lt;a href=&#34;https://quarkus.io/&#34; target=&#34;_blank&#34;&gt;Quarkus&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A idéia é criar um serviço simples de echo: eu mando um texto e a API responde o mesmo texto em PLAINTEXT. Além disso eu adicionarei um parametro de time pra decidir em quanto tempo eu quero que essa resposta seja retornada.&lt;/p&gt;
+&lt;h2 id=&#34;echo-app&#34;&gt;2. Aplicativo Echo&lt;/h2&gt;
+&lt;p&gt;Um endpoint REST simples que retorna o mesmo texto que eu enviar como parametro. Também deve ser possível pedir um tempo de espera em milisegundos pra API responder.&lt;/p&gt;
+&lt;p&gt;Você pode encontrar o código fonte completo deste exemplo no meu &lt;a href=&#34;https://github.com/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;, ou você também pode:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Pull from &lt;a href=&#34;https://hub.docker.com/r/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;DockerHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Access the running app on [Heroku]()&lt;/li&gt;
+&lt;li&gt;Baixar a imagem diretamente do &lt;a href=&#34;https://hub.docker.com/r/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;DockerHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;project-generation&#34;&gt;3. Project Generation&lt;/h2&gt;
-&lt;p&gt;I did follow the instructions on &lt;a href=&#34;https://quarkus.io/guides/openapi-swaggerui&#34; target=&#34;_blank&#34;&gt;Quarkus Docs&lt;/a&gt;, as follows:&lt;/p&gt;
+&lt;h2 id=&#34;geracao-do-projeto&#34;&gt;3. Geração do Projeto&lt;/h2&gt;
+&lt;p&gt;Eu segui as etapas descritas na documentação do &lt;a href=&#34;https://quarkus.io/guides/openapi-swaggerui&#34; target=&#34;_blank&#34;&gt;Quarkus&lt;/a&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Create base project&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Criar o projeto base:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mvn io.quarkus:quarkus-maven-plugin:1.0.1.Final:create \
 -DprojectGroupId=com.jjbeto \
 -DprojectArtifactId=echo \
@@ -36,48 +35,48 @@
 -Dpath=/echo \
 -Dextensions=resteasy-jsonb
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Remove .mvn from git: added &lt;code&gt;.mvn&lt;/code&gt; on &lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Create basic logic: returns the same text provided as a response and accepts a query parameter to set a wait time to return the response.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Removi .mvn do git: adicionei &lt;code&gt;.mvn&lt;/code&gt; no &lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Criar a lógica da aplicação: retornar o texto parametrizado como PLAINTEXT e aceitar um query parameter como tempo de espera antes da API retornar a resposta.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Change to use root as base endpoint;&lt;/li&gt;
-&lt;li&gt;Returns the message path parameter back to the caller;&lt;/li&gt;
-&lt;li&gt;Add waiting time to respond as a query parameter;&lt;/li&gt;
+&lt;li&gt;Mudar o path root pra ser da própria aplicação;&lt;/li&gt;
+&lt;li&gt;Retornar a mensagem no path parameter de volta para o cliente;&lt;/li&gt;
+&lt;li&gt;Adicionar um tempo de espera de acordo com o query parameter;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;swagger&#34;&gt;4. Swagger&lt;/h2&gt;
-&lt;p&gt;Let&amp;rsquo;s make it better for 3th party usage, adding swagger descriptions to &amp;ldquo;teach&amp;rdquo; how to use the API! It&amp;rsquo;s easy with Quarkus as you can see &lt;a href=&#34;https://quarkus.io/guides/openapi-swaggerui&#34; target=&#34;_blank&#34;&gt;in the documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Firstly we need to add Swagger to the project running the following command in the root folder:&lt;/p&gt;
+&lt;p&gt;Vamos tornar essa API mais amigável pra ser consumida por outras aplicaçōes, adicionando Swagger e colocando algumas descriçōes, explicando pra que serve cada parâmetro. Com Quarkus isso é bem facil e pode ser encontrado como fazer diretamente na &lt;a href=&#34;https://quarkus.io/guides/openapi-swaggerui&#34; target=&#34;_blank&#34;&gt;documentação&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Primeiramente precisamos adicionar o Swagger ao projeto, executando o comando a seguir diretamente na raiz do projeto:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./mvnw quarkus:add-extension -Dextensions=&amp;quot;openapi&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;But I don&amp;rsquo;t like the endpoint generated &lt;code&gt;/openapi&lt;/code&gt; 😒, instead I&amp;rsquo;m going to use &lt;code&gt;/swagger&lt;/code&gt;, so we can add this property to &lt;code&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Mas eu não gosto do endpoint gerado automaticamente &lt;code&gt;/openapi&lt;/code&gt; 😒, então eu vou mudar para &lt;code&gt;/swagger&lt;/code&gt;. Pra isso basta mudar uma propriedade em &lt;code&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;quarkus.smallrye-openapi.path=/swagger
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;/swagger&lt;/code&gt; endpoint is going to deliver the Yaml file describing the API.&lt;/p&gt;
-&lt;p&gt;I want to activate SwaggerUI also:&lt;/p&gt;
+&lt;p&gt;O endpoint &lt;code&gt;/swagger&lt;/code&gt; vai fornecer um arquivo Yaml descrevendo a API.&lt;/p&gt;
+&lt;p&gt;Eu também quero ativar o SwaggerUI:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;quarkus.swagger-ui.always-include=true
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The default endpoint for SwaggerUI is &lt;a href=&#34;http://localhost:8080/swagger-ui&#34; target=&#34;_blank&#34;&gt;http://localhost:8080/swagger-ui&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Nice! Now let&amp;rsquo;s move on and add some descriptions for API users to know how to handle it. According to the &lt;a href=&#34;https://swagger.io/specification/&#34; target=&#34;_blank&#34;&gt;specification&lt;/a&gt;, we need to use the &lt;code&gt;openapi.yml&lt;/code&gt; to add custom information:&lt;/p&gt;
+&lt;p&gt;O endpoint padrão para o SwaggerUI é &lt;a href=&#34;http://localhost:8080/swagger-ui&#34; target=&#34;_blank&#34;&gt;http://localhost:8080/swagger-ui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Muito bom! Agora vamos seguir em frente e adicionar algumas descriçōes para que usuários da API saibam como utiliza-la. De acordo com a &lt;a href=&#34;https://swagger.io/specification/&#34; target=&#34;_blank&#34;&gt;especificação&lt;/a&gt; nós precisamos usar um arquivo &lt;code&gt;openapi.yml&lt;/code&gt; para adicionar dados customizados:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Access &lt;code&gt;http://localhost:8080/swagger&lt;/code&gt; and download &lt;code&gt;openapi.yml&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Save &lt;code&gt;openapi.yml&lt;/code&gt; at &lt;code&gt;./src/main/resources/META-INF&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Add some descriptions and API info&lt;/li&gt;
+&lt;li&gt;Acesse &lt;code&gt;http://localhost:8080/swagger&lt;/code&gt; para baixar o arquivo &lt;code&gt;openapi.yml&lt;/code&gt; atualizado&lt;/li&gt;
+&lt;li&gt;Salve &lt;code&gt;openapi.yml&lt;/code&gt; no diretório &lt;code&gt;./src/main/resources/META-INF&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adicione algumas descriçōes e informaçōes sobre a API&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Now you can access it again via &lt;a href=&#34;http://localhost:8080/swagger-ui&#34; target=&#34;_blank&#34;&gt;http://localhost:8080/swagger-ui&lt;/a&gt; and check the result 😃&lt;/p&gt;
+&lt;p&gt;Agora você pode verificar novamente o endereço local &lt;a href=&#34;http://localhost:8080/swagger-ui&#34; target=&#34;_blank&#34;&gt;http://localhost:8080/swagger-ui&lt;/a&gt; e verifique o resultado 😃&lt;/p&gt;
 &lt;h2 id=&#34;dockerhub&#34;&gt;5. DockerHub&lt;/h2&gt;
-&lt;p&gt;I want to turn it possible that anyone can go to DockerHub and pull the final image of my Echo app.&lt;/p&gt;
-&lt;h3 id=&#34;build-the-native-image&#34;&gt;Build the Native Image&lt;/h3&gt;
-&lt;p&gt;Quarkus let us build a complete native app, with no JVM needed to run. It is awesome mainly for a simple app like Echo, because it&amp;rsquo;s going to be crazing fast and in a incredible small and light image.&lt;/p&gt;
-&lt;p&gt;To build the native image we need to have the pre-requisite setup as mentioned on &lt;a href=&#34;https://quarkus.io/guides/building-native-image&#34; target=&#34;_blank&#34;&gt;Quarkus docs&lt;/a&gt;, please follow the steps before continuing.&lt;/p&gt;
-&lt;p&gt;Notes: please be aware of the compatibility of GraalVM and the current Quarkus framework. Quarkus is always trying to be as close as possible to the last GraalVM build but you need to check if they are already compatible with the current version. At this moment the last build of GraalVM is 19.3.0.r11 and Quarkus is compatible only with &lt;strong&gt;GraalVM 19.2.1&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;After install GraalVM (I did using &lt;a href=&#34;https://sdkman.io/&#34; target=&#34;_blank&#34;&gt;sdkman&lt;/a&gt;), Docker (or podman) and its dependencies, you can build the native package with this command:&lt;/p&gt;
+&lt;p&gt;Eu quero que seja possível que qualquer um possa baixar a imagem diretamente do DockerHub.&lt;/p&gt;
+&lt;h3 id=&#34;construindo-uma-imagem-nativa&#34;&gt;Construindo uma Imagem Nativa&lt;/h3&gt;
+&lt;p&gt;Quarkus permite a criação de um app completamente nativo, onde uma JVM não é necessária. Isso é incrivel principalmente quando se trata de aplicaçōes simples como o &lt;strong&gt;Echo&lt;/strong&gt;, por que a aplicação fica muito rápida e a imagem para execução muito pequena!&lt;/p&gt;
+&lt;p&gt;Para construir a imagem nativa nós precisamos de alguns pre-requisitos conforme mencionado na &lt;a href=&#34;https://quarkus.io/guides/building-native-image&#34; target=&#34;_blank&#34;&gt;documentação do Quarkus&lt;/a&gt;, por favor siga estes passos antes de continuar.&lt;/p&gt;
+&lt;p&gt;Notas: fique atento da versão do GraalVM, se a que você esta instalando é compatível com a versão atual do Quarkus. O Quarkus está sempre em evolução e fica o mais próximo possível das últimas atualizaçōes do GraalVM, mas é preciso verificar se a versão atual é compatível: no momento que estou escrevendo este artigo o GraalVM está na versão 19.3.0.r11 enquanto o Quarkus é compatível apenas com &lt;strong&gt;GraalVM 19.2.1&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Depois de instalar o GraalVM (eu usei &lt;a href=&#34;https://sdkman.io/&#34; target=&#34;_blank&#34;&gt;sdkman&lt;/a&gt;), Docker (ou podman) e as suas dependencias, você pode construir uma imagem nativa com o comando:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./mvnw package -Pnative -Dquarkus.native.container-build=true
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;According to &lt;strong&gt;Quarkus&lt;/strong&gt; the build process is pretty much simple:&lt;/p&gt;
+&lt;p&gt;De acordo com o &lt;strong&gt;Quarkus&lt;/strong&gt; a construção de uma imagem é muito simples:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://quarkus.io/guides/images/native-executable-process.png&#34; alt=&#34;Quarkus Build Process&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;So TL;TR it&amp;rsquo;s exactly like building a fat jar, but the execution to build a native app takes more time (and need more resources),&lt;/p&gt;
-&lt;h4 id=&#34;important-notes-on-build-process&#34;&gt;Important Notes on Build Process&lt;/h4&gt;
-&lt;p&gt;When building the native image with Docker on my Mac, I was getting this error:&lt;/p&gt;
+&lt;p&gt;TL;TR é exatamente como construir um executável Jar com todas as suas dependencias (fat jar), mas a execução para construir uma imagem nativa demora mais tempo pra executar e custa mais recursos da máquina.&lt;/p&gt;
+&lt;h4 id=&#34;notas-importantes-sobre-o-processo-de-construção&#34;&gt;Notas importantes sobre o processo de construção&lt;/h4&gt;
+&lt;p&gt;Ao construir a imagem usando Docker no meu Mac, eu recebi este erro:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
 [echo-1.0-SNAPSHOT-runner:25] classlist: 12,165.10 ms
 [echo-1.0-SNAPSHOT-runner:25] (cap): 1,720.23 ms
@@ -127,7 +126,7 @@ Error: Image build request failed with exit status 137
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I found an issue on &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/1140&#34; target=&#34;_blank&#34;&gt;Quarkus GitHub&lt;/a&gt; related to it and, when I changed my Docker env to use 3Gb (instead of 2Gb by default), the build worked:&lt;/p&gt;
+&lt;p&gt;Eu encontrei uma issue no &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/1140&#34; target=&#34;_blank&#34;&gt;GitHub do Quarkus&lt;/a&gt; relativo a esse erro e, quando mudei a memória do meu Docker para 3GB (ao invés dos 2GB padrão), o build funcionou:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
 [echo-1.0-SNAPSHOT-runner:24] classlist: 8,587.26 ms
 [echo-1.0-SNAPSHOT-runner:24] (cap): 1,512.26 ms
@@ -154,11 +153,11 @@ Error: Image build request failed with exit status 137
 [INFO] Finished at: 2019-12-07T15:30:59+01:00
 [INFO] ------------------------------------------------------------------------
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;prepare-the-image&#34;&gt;Prepare the Image&lt;/h4&gt;
-&lt;p&gt;To build the image locally we can run from root folder:&lt;/p&gt;
+&lt;h4 id=&#34;preparar-a-imagem&#34;&gt;Preparar a Imagem&lt;/h4&gt;
+&lt;p&gt;Para criar a imagem localmente podemos executar o seguinte comando:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker build -f src/main/docker/Dockerfile.native -t jjbeto/echo .
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The output is:&lt;/p&gt;
+&lt;p&gt;O resultado:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Sending build context to Docker daemon 36.77MB
 Step 1/6 : FROM registry.access.redhat.com/ubi8/ubi-minimal
 latest: Pulling from ubi8/ubi-minimal
@@ -188,29 +187,29 @@ Removing intermediate container 8a2dd88f45b2
 Successfully built 33592d7cd99d
 Successfully tagged jjbeto/echo:latest
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And if you list the local docker images:&lt;/p&gt;
+&lt;p&gt;Se você listar as imagens locais:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 jjbeto/echo latest 33592d7cd99d 12 seconds ago 142MB
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we can finally run our image on Docker:&lt;/p&gt;
+&lt;p&gt;Agora podemos finalmente executar nossa imagem:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -i --rm -p 8080:8080 jjbeto/echo
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And the output is:&lt;/p&gt;
+&lt;p&gt;E o resultado:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;2019-12-07 14:48:13,719 INFO [io.quarkus] (main) echo 1.0-SNAPSHOT (running on Quarkus 1.0.1.Final) started in 0.012s. Listening on: http://0.0.0.0:8080
 2019-12-07 14:48:13,719 INFO [io.quarkus] (main) Profile prod activated.
 2019-12-07 14:48:13,719 INFO [io.quarkus] (main) Installed features: [cdi, resteasy, resteasy-jsonb, smallrye-openapi, swagger-ui]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Awesome! And we can reach the service on localhost:&lt;/p&gt;
+&lt;p&gt;Sensacional! E se acessarmos o localhost:&lt;/p&gt;
 &lt;figure&gt;
-&lt;a data-fancybox=&#34;&#34; href=&#34;localhost-8080.png&#34; data-caption=&#34;Localhost running on port 8080&#34;&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;localhost-8080.png&#34; data-caption=&#34;Localhost executando na porta 8080&#34;&gt;
 &lt;img src=&#34;localhost-8080.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
 &lt;figcaption&gt;
-Localhost running on port 8080
+Localhost executando na porta 8080
 &lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;But&amp;hellip; The image is still too big! 142MB is not a good size for such small service.. Right?&lt;/p&gt;
-&lt;p&gt;I changed the &lt;code&gt;.src/main/docker/Dockerfile.native&lt;/code&gt; to use only the minimum files from &lt;code&gt;debian:10-slim&lt;/code&gt;, following a &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/326&#34; target=&#34;_blank&#34;&gt;very nice tip&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Mas&amp;hellip; A imagem ainda é muito grande! 142MB não é um bom tamanho legal pra um serviço tão pequeno, certo?&lt;/p&gt;
+&lt;p&gt;Eu mudei o arquivo &lt;code&gt;.src/main/docker/Dockerfile.native&lt;/code&gt; para usar o mínimo necessário de arquivos da imagem &lt;code&gt;debian:10-slim&lt;/code&gt;, seguindo &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/326&#34; target=&#34;_blank&#34;&gt;esse conselho&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Stage 1 : intermediate container to copy the needed dynamic libraries
 FROM debian:10-slim AS debian
 ## Stage 2 : create the final docker image
@@ -228,30 +227,30 @@ COPY --from=debian /lib/x86_64-linux-gnu/ld-2.28.so \
 EXPOSE 8080
 CMD [&amp;quot;/bin/app&amp;quot;, &amp;quot;-Dquarkus.http.host=0.0.0.0&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And now my image has a more reasonable size: 44.5MB&lt;/p&gt;
+&lt;p&gt;E agora a minha imagem tem um tamanho mais interessante: 44.5MB&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 jjbeto/echo latest 3d7de934bcd4 29 seconds ago 44.5MB
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;But the final result on DockerHub is different:&lt;/p&gt;
+&lt;p&gt;Mas o resultado final no DockerHub é diferente:&lt;/p&gt;
 &lt;figure&gt;
-&lt;a data-fancybox=&#34;&#34; href=&#34;dockerhub.png&#34; data-caption=&#34;Image on DockerHub&#34;&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;dockerhub.png&#34; data-caption=&#34;Imagem no DockerHub&#34;&gt;
 &lt;img src=&#34;dockerhub.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
 &lt;figcaption&gt;
-Image on DockerHub
+Imagem no DockerHub
 &lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;15MB?? Now we are talking!! 😎&lt;/p&gt;
-&lt;p&gt;Do you know how to make it even smaller? Please drop a message! 📫&lt;/p&gt;
-&lt;h4 id=&#34;how-to-publish-on-dockerhub&#34;&gt;How to Publish on DockerHub?&lt;/h4&gt;
-&lt;p&gt;To publish the image on DockerHub is pretty simple:&lt;/p&gt;
+&lt;p&gt;15MB?? Agora sim!! 😎&lt;/p&gt;
+&lt;p&gt;Você sabe como torná-la ainda menor? Por favor me manda uma mensagem! 📫&lt;/p&gt;
+&lt;h4 id=&#34;como-publicar-no-dockerhub&#34;&gt;Como Publicar no DockerHub?&lt;/h4&gt;
+&lt;p&gt;Para publicar a imagem no DockerHub é muito simples:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Login by &lt;code&gt;docker login&lt;/code&gt; and give your username/password&lt;/li&gt;
-&lt;li&gt;Push the local image to remote using the command &lt;code&gt;docker push &amp;lt;image_name&amp;gt;&lt;/code&gt;, in my case it was &lt;code&gt;docker push jjbeto/echo&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Go to &lt;a href=&#34;https://hub.docker.com/r/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;DockerHub&lt;/a&gt; and check it 🎉&lt;/li&gt;
+&lt;li&gt;Login com o comando &lt;code&gt;docker login&lt;/code&gt; e usar seu usuário/senha&lt;/li&gt;
+&lt;li&gt;Enviar sua imagem local para o repositório remoto com o comando &lt;code&gt;docker push &amp;lt;image_name&amp;gt;&lt;/code&gt;, no meu caso &lt;code&gt;docker push jjbeto/echo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Vá até o &lt;a href=&#34;https://hub.docker.com/r/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;DockerHub&lt;/a&gt; e verifique o resultado 🎉&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;conclusion&#34;&gt;6. Conclusion&lt;/h2&gt;
-&lt;p&gt;Quarkus is an amazing tool and brings a lot of power to the Java world in my opinion. It&amp;rsquo;s easy to use, has already a lot of built-in tools (like Spring-Boot maybe?) that make it possible to build good apps in a fraction of time.&lt;/p&gt;
-&lt;p&gt;But please don&amp;rsquo;t be silly, Quarkus is not for everyone and not for everything! As it&amp;rsquo;s using GraalVM you can&amp;rsquo;t use any library out there, because you can have reflection problems for example.&lt;/p&gt;
-&lt;p&gt;If you can use Quarkus library standards, Quarkus is for sure something to consider for your project.&lt;/p&gt;
-&lt;p&gt;About the Echo App, it was a good choice to use Quarkus and I want to use this app in a near future to do more testing and labs withs microservices environments, stay tuned! 😎&lt;/p&gt;</description></item></channel></rss>
+&lt;h2 id=&#34;conclusao&#34;&gt;6. Conclusão&lt;/h2&gt;
+&lt;p&gt;Quarkus é uma ferramenta incrível e renova mais uma vez o poder do Java no mundo atual, na minha opinião. É fácio de usar, já possui uma grande lista de ferramentas que podem ser usadas em conjunto, como Hibernate, Vert.x e MicroProfile.&lt;/p&gt;
+&lt;p&gt;Mas por favor não se engane, Quarkus não é pra todo mundo e nem pra todo projeto! Como é construido usando GraalVM, não é possível usar qualquer lib que você encontrar, ou você pode encontrar problemas como reflections por exemplo.&lt;/p&gt;
+&lt;p&gt;Se você puder usar as libs padrões do Quarkus, com certeza ele é um framework pra se levar em consideração no seu projeto.&lt;/p&gt;
+&lt;p&gt;Sobre o Echo App, Quarkus foi uma boa escolha! O app foi gerado já pensando um pouco mais na frente, quando eu for fazer alguns testes com ambientes de microserviços, fiquem ligados! 😎&lt;/p&gt;</description></item></channel></rss>

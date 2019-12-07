@@ -127,7 +127,7 @@ Error: Image build request failed with exit status 137
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I fount an issue on &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/1140&#34; target=&#34;_blank&#34;&gt;Quarkus GitHub&lt;/a&gt; related to it and, when I changed my Docker env to use 3Gb (instead of 2Gb by default), the build worked:&lt;/p&gt;
+&lt;p&gt;I found an issue on &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/1140&#34; target=&#34;_blank&#34;&gt;Quarkus GitHub&lt;/a&gt; related to it and, when I changed my Docker env to use 3Gb (instead of 2Gb by default), the build worked:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
 [echo-1.0-SNAPSHOT-runner:24] classlist: 8,587.26 ms
 [echo-1.0-SNAPSHOT-runner:24] (cap): 1,512.26 ms
@@ -155,7 +155,7 @@ Error: Image build request failed with exit status 137
 [INFO] ------------------------------------------------------------------------
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;prepare-the-image&#34;&gt;Prepare the Image&lt;/h4&gt;
-&lt;p&gt;To generate the image locally we can run from root folder:&lt;/p&gt;
+&lt;p&gt;To build the image locally we can run from root folder:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker build -f src/main/docker/Dockerfile.native -t jjbeto/echo .
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output is:&lt;/p&gt;

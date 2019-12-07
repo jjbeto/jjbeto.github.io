@@ -1,4 +1,259 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/jjbeto</title><link>https://jjbeto.com/pt/authors/jjbeto/</link><atom:link href="https://jjbeto.com/pt/authors/jjbeto/index.xml" rel="self" type="application/rss+xml"/><description>/jjbeto</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>pt</language><lastBuildDate>Sat, 30 Nov 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/avatar.jpg</url><title>/jjbeto</title><link>https://jjbeto.com/pt/authors/jjbeto/</link></image><item><title>Setup Completo Para Este Site - Parte 1</title><link>https://jjbeto.com/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/</link><pubDate>Sat, 30 Nov 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/jjbeto</title><link>https://jjbeto.com/pt/authors/jjbeto/</link><atom:link href="https://jjbeto.com/pt/authors/jjbeto/index.xml" rel="self" type="application/rss+xml"/><description>/jjbeto</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>pt</language><lastBuildDate>Sat, 07 Dec 2019 14:00:00 +0000</lastBuildDate><image><url>https://jjbeto.com/img/avatar.jpg</url><title>/jjbeto</title><link>https://jjbeto.com/pt/authors/jjbeto/</link></image><item><title>Construindo uma aplicação nativa com Quarkus</title><link>https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/</link><pubDate>Sat, 07 Dec 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/pt/blog/2019/12/07/build-native-app-with-quarkus/</guid><description>
+&lt;p&gt;&lt;aside&gt;
+&lt;div class=&#34;ox-hugo-toc toc&#34;&gt;
+&lt;header&gt;
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;/header&gt;
+- &lt;a href=&#34;#visao-geral&#34;&gt;1. Visão Geral&lt;/a&gt;
+- &lt;a href=&#34;#echo-app&#34;&gt;2. Aplicativo Echo&lt;/a&gt;
+- &lt;a href=&#34;#geracao-do-projeto&#34;&gt;3. Geração do Projeto&lt;/a&gt;
+- &lt;a href=&#34;#swagger&#34;&gt;4. Swagger&lt;/a&gt;
+- &lt;a href=&#34;#dockerhub&#34;&gt;5. DockerHub&lt;/a&gt;
+- &lt;a href=&#34;#conclusao&#34;&gt;6. Conclusão&lt;/a&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+&lt;!--endtoc--&gt;&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;1. Overview&lt;/h2&gt;
+&lt;p&gt;Eu quero falar de 88Microserviços**, mas então eu percebi que na verdade eu não muito material publicado que eu possa usar pra isso, como &lt;strong&gt;um microserviço&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Por conta disso eu decidi criar um pequeno microserviço do zero, o qual eu possa reusar em futuros artigos pra fazer mais coisas legais 😝&lt;/p&gt;
+&lt;p&gt;Pra isso eu escolhi um framework muito falado hoje em dia, que é bem interessante: &lt;a href=&#34;https://quarkus.io/&#34; target=&#34;_blank&#34;&gt;Quarkus&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A idéia é criar um serviço simples de echo: eu mando um texto e a API responde o mesmo texto em PLAINTEXT. Além disso eu adicionarei um parametro de time pra decidir em quanto tempo eu quero que essa resposta seja retornada.&lt;/p&gt;
+&lt;h2 id=&#34;echo-app&#34;&gt;2. Aplicativo Echo&lt;/h2&gt;
+&lt;p&gt;Um endpoint REST simples que retorna o mesmo texto que eu enviar como parametro. Também deve ser possível pedir um tempo de espera em milisegundos pra API responder.&lt;/p&gt;
+&lt;p&gt;Você pode encontrar o código fonte completo deste exemplo no meu &lt;a href=&#34;https://github.com/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;, ou você também pode:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Baixar a imagem diretamente do &lt;a href=&#34;https://hub.docker.com/r/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;DockerHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;geracao-do-projeto&#34;&gt;3. Geração do Projeto&lt;/h2&gt;
+&lt;p&gt;Eu segui as etapas descritas na documentação do &lt;a href=&#34;https://quarkus.io/guides/openapi-swaggerui&#34; target=&#34;_blank&#34;&gt;Quarkus&lt;/a&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Criar o projeto base:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mvn io.quarkus:quarkus-maven-plugin:1.0.1.Final:create \
+-DprojectGroupId=com.jjbeto \
+-DprojectArtifactId=echo \
+-DclassName=com.jjbeto.echo.EchoResource \
+-Dpath=/echo \
+-Dextensions=resteasy-jsonb
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Removi .mvn do git: adicionei &lt;code&gt;.mvn&lt;/code&gt; no &lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Criar a lógica da aplicação: retornar o texto parametrizado como PLAINTEXT e aceitar um query parameter como tempo de espera antes da API retornar a resposta.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mudar o path root pra ser da própria aplicação;&lt;/li&gt;
+&lt;li&gt;Retornar a mensagem no path parameter de volta para o cliente;&lt;/li&gt;
+&lt;li&gt;Adicionar um tempo de espera de acordo com o query parameter;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;swagger&#34;&gt;4. Swagger&lt;/h2&gt;
+&lt;p&gt;Vamos tornar essa API mais amigável pra ser consumida por outras aplicaçōes, adicionando Swagger e colocando algumas descriçōes, explicando pra que serve cada parâmetro. Com Quarkus isso é bem facil e pode ser encontrado como fazer diretamente na &lt;a href=&#34;https://quarkus.io/guides/openapi-swaggerui&#34; target=&#34;_blank&#34;&gt;documentação&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Primeiramente precisamos adicionar o Swagger ao projeto, executando o comando a seguir diretamente na raiz do projeto:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./mvnw quarkus:add-extension -Dextensions=&amp;quot;openapi&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mas eu não gosto do endpoint gerado automaticamente &lt;code&gt;/openapi&lt;/code&gt; 😒, então eu vou mudar para &lt;code&gt;/swagger&lt;/code&gt;. Pra isso basta mudar uma propriedade em &lt;code&gt;application.properties&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;quarkus.smallrye-openapi.path=/swagger
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;O endpoint &lt;code&gt;/swagger&lt;/code&gt; vai fornecer um arquivo Yaml descrevendo a API.&lt;/p&gt;
+&lt;p&gt;Eu também quero ativar o SwaggerUI:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;quarkus.swagger-ui.always-include=true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;O endpoint padrão para o SwaggerUI é &lt;a href=&#34;http://localhost:8080/swagger-ui&#34; target=&#34;_blank&#34;&gt;http://localhost:8080/swagger-ui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Muito bom! Agora vamos seguir em frente e adicionar algumas descriçōes para que usuários da API saibam como utiliza-la. De acordo com a &lt;a href=&#34;https://swagger.io/specification/&#34; target=&#34;_blank&#34;&gt;especificação&lt;/a&gt; nós precisamos usar um arquivo &lt;code&gt;openapi.yml&lt;/code&gt; para adicionar dados customizados:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Acesse &lt;code&gt;http://localhost:8080/swagger&lt;/code&gt; para baixar o arquivo &lt;code&gt;openapi.yml&lt;/code&gt; atualizado&lt;/li&gt;
+&lt;li&gt;Salve &lt;code&gt;openapi.yml&lt;/code&gt; no diretório &lt;code&gt;./src/main/resources/META-INF&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adicione algumas descriçōes e informaçōes sobre a API&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Agora você pode verificar novamente o endereço local &lt;a href=&#34;http://localhost:8080/swagger-ui&#34; target=&#34;_blank&#34;&gt;http://localhost:8080/swagger-ui&lt;/a&gt; e verifique o resultado 😃&lt;/p&gt;
+&lt;h2 id=&#34;dockerhub&#34;&gt;5. DockerHub&lt;/h2&gt;
+&lt;p&gt;Eu quero que seja possível que qualquer um possa baixar a imagem diretamente do DockerHub.&lt;/p&gt;
+&lt;h3 id=&#34;construindo-uma-imagem-nativa&#34;&gt;Construindo uma Imagem Nativa&lt;/h3&gt;
+&lt;p&gt;Quarkus permite a criação de um app completamente nativo, onde uma JVM não é necessária. Isso é incrivel principalmente quando se trata de aplicaçōes simples como o &lt;strong&gt;Echo&lt;/strong&gt;, por que a aplicação fica muito rápida e a imagem para execução muito pequena!&lt;/p&gt;
+&lt;p&gt;Para construir a imagem nativa nós precisamos de alguns pre-requisitos conforme mencionado na &lt;a href=&#34;https://quarkus.io/guides/building-native-image&#34; target=&#34;_blank&#34;&gt;documentação do Quarkus&lt;/a&gt;, por favor siga estes passos antes de continuar.&lt;/p&gt;
+&lt;p&gt;Notas: fique atento da versão do GraalVM, se a que você esta instalando é compatível com a versão atual do Quarkus. O Quarkus está sempre em evolução e fica o mais próximo possível das últimas atualizaçōes do GraalVM, mas é preciso verificar se a versão atual é compatível: no momento que estou escrevendo este artigo o GraalVM está na versão 19.3.0.r11 enquanto o Quarkus é compatível apenas com &lt;strong&gt;GraalVM 19.2.1&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Depois de instalar o GraalVM (eu usei &lt;a href=&#34;https://sdkman.io/&#34; target=&#34;_blank&#34;&gt;sdkman&lt;/a&gt;), Docker (ou podman) e as suas dependencias, você pode construir uma imagem nativa com o comando:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./mvnw package -Pnative -Dquarkus.native.container-build=true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;De acordo com o &lt;strong&gt;Quarkus&lt;/strong&gt; a construção de uma imagem é muito simples:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://quarkus.io/guides/images/native-executable-process.png&#34; alt=&#34;Quarkus Build Process&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;TL;TR é exatamente como construir um executável Jar com todas as suas dependencias (fat jar), mas a execução para construir uma imagem nativa demora mais tempo pra executar e custa mais recursos da máquina.&lt;/p&gt;
+&lt;h4 id=&#34;notas-importantes-sobre-o-processo-de-construção&#34;&gt;Notas importantes sobre o processo de construção&lt;/h4&gt;
+&lt;p&gt;Ao construir a imagem usando Docker no meu Mac, eu recebi este erro:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
+[echo-1.0-SNAPSHOT-runner:25] classlist: 12,165.10 ms
+[echo-1.0-SNAPSHOT-runner:25] (cap): 1,720.23 ms
+[echo-1.0-SNAPSHOT-runner:25] setup: 3,699.11 ms
+14:23:23,903 INFO [org.jbo.threads] JBoss Threads version 3.0.0.Final
+[echo-1.0-SNAPSHOT-runner:25] (typeflow): 17,087.39 ms
+[echo-1.0-SNAPSHOT-runner:25] (objects): 12,944.17 ms
+[echo-1.0-SNAPSHOT-runner:25] (features): 489.73 ms
+[echo-1.0-SNAPSHOT-runner:25] analysis: 31,843.79 ms
+[echo-1.0-SNAPSHOT-runner:25] (clinit): 622.07 ms
+[echo-1.0-SNAPSHOT-runner:25] universe: 1,768.77 ms
+[echo-1.0-SNAPSHOT-runner:25] (parse): 42,885.71 ms
+[echo-1.0-SNAPSHOT-runner:25] (inline): 49,278.76 ms
+[echo-1.0-SNAPSHOT-runner:25] (compile): 53,007.49 ms
+[echo-1.0-SNAPSHOT-runner:25] compile: 158,081.96 ms
+Error: Image build request failed with exit status 137
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 03:55 min
+[INFO] Finished at: 2019-12-07T15:26:48+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal io.quarkus:quarkus-maven-plugin:1.0.1.Final:build (default) on project echo: Failed to build a runnable JAR: Failed to augment application classes: Build failure: Build failed due to errors
+[ERROR] [error]: Build step io.quarkus.deployment.pkg.steps.NativeImageBuildStep#build threw an exception: java.lang.RuntimeException: Failed to build native image
+[ERROR] at io.quarkus.deployment.pkg.steps.NativeImageBuildStep.build(NativeImageBuildStep.java:289)
+[ERROR] at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[ERROR] at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[ERROR] at java.lang.reflect.Method.invoke(Method.java:498)
+[ERROR] at io.quarkus.deployment.ExtensionLoader$1.execute(ExtensionLoader.java:941)
+[ERROR] at io.quarkus.builder.BuildContext.run(BuildContext.java:415)
+[ERROR] at io.quarkus.builder.BuildContext$$Lambda$109.0000000055C01130.run(Unknown Source)
+[ERROR] at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+[ERROR] at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2011)
+[ERROR] at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1535)
+[ERROR] at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1426)
+[ERROR] at java.lang.Thread.run(Thread.java:819)
+[ERROR] at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+[ERROR] Caused by: java.lang.RuntimeException: Image generation failed
+[ERROR] at io.quarkus.deployment.pkg.steps.NativeImageBuildStep.build(NativeImageBuildStep.java:278)
+[ERROR] ... 13 more
+[ERROR] -&amp;gt; [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Eu encontrei uma issue no &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/1140&#34; target=&#34;_blank&#34;&gt;GitHub do Quarkus&lt;/a&gt; relativo a esse erro e, quando mudei a memória do meu Docker para 3GB (ao invés dos 2GB padrão), o build funcionou:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
+[echo-1.0-SNAPSHOT-runner:24] classlist: 8,587.26 ms
+[echo-1.0-SNAPSHOT-runner:24] (cap): 1,512.26 ms
+[echo-1.0-SNAPSHOT-runner:24] setup: 3,112.68 ms
+14:29:25,687 INFO [org.jbo.threads] JBoss Threads version 3.0.0.Final
+[echo-1.0-SNAPSHOT-runner:24] (typeflow): 19,795.33 ms
+[echo-1.0-SNAPSHOT-runner:24] (objects): 17,973.88 ms
+[echo-1.0-SNAPSHOT-runner:24] (features): 486.83 ms
+[echo-1.0-SNAPSHOT-runner:24] analysis: 39,734.95 ms
+[echo-1.0-SNAPSHOT-runner:24] (clinit): 582.32 ms
+[echo-1.0-SNAPSHOT-runner:24] universe: 2,178.24 ms
+[echo-1.0-SNAPSHOT-runner:24] (parse): 5,333.97 ms
+[echo-1.0-SNAPSHOT-runner:24] (inline): 9,494.69 ms
+[echo-1.0-SNAPSHOT-runner:24] (compile): 29,119.41 ms
+[echo-1.0-SNAPSHOT-runner:24] compile: 46,351.15 ms
+[echo-1.0-SNAPSHOT-runner:24] image: 3,879.22 ms
+[echo-1.0-SNAPSHOT-runner:24] write: 2,057.79 ms
+[echo-1.0-SNAPSHOT-runner:24] [total]: 106,328.41 ms
+[INFO] [io.quarkus.deployment.QuarkusAugmentor] Quarkus augmentation completed in 111589ms
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 02:00 min
+[INFO] Finished at: 2019-12-07T15:30:59+01:00
+[INFO] ------------------------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;preparar-a-imagem&#34;&gt;Preparar a Imagem&lt;/h4&gt;
+&lt;p&gt;Para criar a imagem localmente podemos executar o seguinte comando:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker build -f src/main/docker/Dockerfile.native -t jjbeto/echo .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;O resultado:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Sending build context to Docker daemon 36.77MB
+Step 1/6 : FROM registry.access.redhat.com/ubi8/ubi-minimal
+latest: Pulling from ubi8/ubi-minimal
+645c2831c08a: Pull complete
+5e98065763a5: Pull complete
+Digest: sha256:32fb8bae553bfba2891f535fa9238f79aafefb7eff603789ba8920f505654607
+Status: Downloaded newer image for registry.access.redhat.com/ubi8/ubi-minimal:latest
+---&amp;gt; 469119976c56
+Step 2/6 : WORKDIR /work/
+---&amp;gt; Running in 4f74acf2fa46
+Removing intermediate container 4f74acf2fa46
+---&amp;gt; fc9bee94a0d0
+Step 3/6 : COPY target/*-runner /work/application
+---&amp;gt; b9a029618b01
+Step 4/6 : RUN chmod 775 /work
+---&amp;gt; Running in a37dd1eda18d
+Removing intermediate container a37dd1eda18d
+---&amp;gt; a686c7dba3ed
+Step 5/6 : EXPOSE 8080
+---&amp;gt; Running in 21f6e36ba8cb
+Removing intermediate container 21f6e36ba8cb
+---&amp;gt; 5d0d75543315
+Step 6/6 : CMD [&amp;quot;./application&amp;quot;, &amp;quot;-Dquarkus.http.host=0.0.0.0&amp;quot;]
+---&amp;gt; Running in 8a2dd88f45b2
+Removing intermediate container 8a2dd88f45b2
+---&amp;gt; 33592d7cd99d
+Successfully built 33592d7cd99d
+Successfully tagged jjbeto/echo:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Se você listar as imagens locais:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE
+jjbeto/echo latest 33592d7cd99d 12 seconds ago 142MB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Agora podemos finalmente executar nossa imagem:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -i --rm -p 8080:8080 jjbeto/echo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;E o resultado:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;2019-12-07 14:48:13,719 INFO [io.quarkus] (main) echo 1.0-SNAPSHOT (running on Quarkus 1.0.1.Final) started in 0.012s. Listening on: http://0.0.0.0:8080
+2019-12-07 14:48:13,719 INFO [io.quarkus] (main) Profile prod activated.
+2019-12-07 14:48:13,719 INFO [io.quarkus] (main) Installed features: [cdi, resteasy, resteasy-jsonb, smallrye-openapi, swagger-ui]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sensacional! E se acessarmos o localhost:&lt;/p&gt;
+&lt;figure&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;localhost-8080.png&#34; data-caption=&#34;Localhost executando na porta 8080&#34;&gt;
+&lt;img src=&#34;localhost-8080.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Localhost executando na porta 8080
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Mas&amp;hellip; A imagem ainda é muito grande! 142MB não é um bom tamanho legal pra um serviço tão pequeno, certo?&lt;/p&gt;
+&lt;p&gt;Eu mudei o arquivo &lt;code&gt;.src/main/docker/Dockerfile.native&lt;/code&gt; para usar o mínimo necessário de arquivos da imagem &lt;code&gt;debian:10-slim&lt;/code&gt;, seguindo &lt;a href=&#34;https://github.com/quarkusio/quarkus/issues/326&#34; target=&#34;_blank&#34;&gt;esse conselho&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## Stage 1 : intermediate container to copy the needed dynamic libraries
+FROM debian:10-slim AS debian
+## Stage 2 : create the final docker image
+FROM scratch
+COPY target/*-runner /bin/app
+COPY --from=debian /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2
+COPY --from=debian /lib/x86_64-linux-gnu/ld-2.28.so \
+/lib/x86_64-linux-gnu/libm.so.6 /lib/x86_64-linux-gnu/libm-2.28.so \
+/lib/x86_64-linux-gnu/libpthread.so.0 /lib/x86_64-linux-gnu/libpthread-2.28.so \
+/lib/x86_64-linux-gnu/libdl.so.2 /lib/x86_64-linux-gnu/libdl-2.28.so \
+/lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so.1.2.11 \
+/lib/x86_64-linux-gnu/librt.so.1 /lib/x86_64-linux-gnu/librt-2.28.so \
+/lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libc-2.28.so \
+/lib/x86_64-linux-gnu/
+EXPOSE 8080
+CMD [&amp;quot;/bin/app&amp;quot;, &amp;quot;-Dquarkus.http.host=0.0.0.0&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;E agora a minha imagem tem um tamanho mais interessante: 44.5MB&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE
+jjbeto/echo latest 3d7de934bcd4 29 seconds ago 44.5MB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mas o resultado final no DockerHub é diferente:&lt;/p&gt;
+&lt;figure&gt;
+&lt;a data-fancybox=&#34;&#34; href=&#34;dockerhub.png&#34; data-caption=&#34;Imagem no DockerHub&#34;&gt;
+&lt;img src=&#34;dockerhub.png&#34; alt=&#34;&#34; &gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Imagem no DockerHub
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;15MB?? Agora sim!! 😎&lt;/p&gt;
+&lt;p&gt;Você sabe como torná-la ainda menor? Por favor me manda uma mensagem! 📫&lt;/p&gt;
+&lt;h4 id=&#34;como-publicar-no-dockerhub&#34;&gt;Como Publicar no DockerHub?&lt;/h4&gt;
+&lt;p&gt;Para publicar a imagem no DockerHub é muito simples:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Login com o comando &lt;code&gt;docker login&lt;/code&gt; e usar seu usuário/senha&lt;/li&gt;
+&lt;li&gt;Enviar sua imagem local para o repositório remoto com o comando &lt;code&gt;docker push &amp;lt;image_name&amp;gt;&lt;/code&gt;, no meu caso &lt;code&gt;docker push jjbeto/echo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Vá até o &lt;a href=&#34;https://hub.docker.com/r/jjbeto/echo&#34; target=&#34;_blank&#34;&gt;DockerHub&lt;/a&gt; e verifique o resultado 🎉&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;conclusao&#34;&gt;6. Conclusão&lt;/h2&gt;
+&lt;p&gt;Quarkus é uma ferramenta incrível e renova mais uma vez o poder do Java no mundo atual, na minha opinião. É fácio de usar, já possui uma grande lista de ferramentas que podem ser usadas em conjunto, como Hibernate, Vert.x e MicroProfile.&lt;/p&gt;
+&lt;p&gt;Mas por favor não se engane, Quarkus não é pra todo mundo e nem pra todo projeto! Como é construido usando GraalVM, não é possível usar qualquer lib que você encontrar, ou você pode encontrar problemas como reflections por exemplo.&lt;/p&gt;
+&lt;p&gt;Se você puder usar as libs padrões do Quarkus, com certeza ele é um framework pra se levar em consideração no seu projeto.&lt;/p&gt;
+&lt;p&gt;Sobre o Echo App, Quarkus foi uma boa escolha! O app foi gerado já pensando um pouco mais na frente, quando eu for fazer alguns testes com ambientes de microserviços, fiquem ligados! 😎&lt;/p&gt;</description></item><item><title>Setup Completo Para Este Site - Parte 1</title><link>https://jjbeto.com/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/</link><pubDate>Sat, 30 Nov 2019 14:00:00 +0000</pubDate><guid>https://jjbeto.com/pt/blog/2019/11/30/setup_completo_para_este_site_parte_1/</guid><description>
 &lt;p&gt;&lt;aside&gt;
 &lt;div class=&#34;ox-hugo-toc toc&#34;&gt;
 &lt;header&gt;
