@@ -1,7 +1,7 @@
 ---
-title: 'Build Native App with Quarkus'
-subtitle: 'A simple echo app using resteasy and swagger with quarkus'
-summary: A simple echo app using resteasy and swagger with quarkus
+title: 'Construindo uma aplicação nativa com Quarkus'
+subtitle: 'Uma aplicação simples de Echo usando resteasy e swagger com quarkus'
+summary: Uma aplicação simples de Echo usando resteasy e swagger com quarkus
 authors:
 - jjbeto
 tags:
@@ -18,7 +18,7 @@ featured: false
 # Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
 image:
   placement: 1
-  caption: 'Credit: [**Atom**](https://onextrapixel.com/best-atom-packages-web-developers/)'
+  caption: 'Créditos: [**Atom**](https://onextrapixel.com/best-atom-packages-web-developers/)'
   focal_point: ""
   preview_only: false
 
@@ -32,42 +32,41 @@ projects: []
 <aside>
 <div class="ox-hugo-toc toc">
 <header>
-<h2>Table of Contents</h2>
+<h2>Índice</h2>
 </header>
-- [1. Overview](#overview)
-- [2. Echo App](#echo-app)
-- [3. Project Generation](#project-generation)
+- [1. Visão Geral](#visao-geral)
+- [2. Aplicativo Echo](#echo-app)
+- [3. Geração do Projeto](#geracao-do-projeto)
 - [4. Swagger](#swagger)
 - [5. DockerHub](#dockerhub)
-- [6. Conclusion](#conclusion)
+- [6. Conclusão](#conclusao)
 </div>
 </aside>
 <!--endtoc-->
 
 ## 1. Overview {#overview}
 
-I want to talk about **Microservices**, but then I just found out that actually I don't have much opensource material published, like **one microservice alone**.
+Eu quero falar de 88Microserviços**, mas então eu percebi que na verdade eu não muito material publicado que eu possa usar pra isso, como **um microserviço**.
 
-Because of that I've decided to create one from scratch, which I can reuse in next articles for cool stuff 😝
+Por conta disso eu decidi criar um pequeno microserviço do zero, o qual eu possa reusar em futuros artigos pra fazer mais coisas legais 😝
 
-For this I just choose a really interesting project to use as base: [Quarkus](https://quarkus.io/).
+Pra isso eu escolhi um framework muito falado hoje em dia, que é bem interessante: [Quarkus](https://quarkus.io/).
 
-The idea is to create a simple Echo service, which I'm able to set a timer to get back a response.
+A idéia é criar um serviço simples de echo: eu mando um texto e a API responde o mesmo texto em PLAINTEXT. Além disso eu adicionarei um parametro de time pra decidir em quanto tempo eu quero que essa resposta seja retornada.
 
-## 2. Echo App {#echo-app} 
+## 2. Aplicativo Echo {#echo-app} 
 
-A simple REST endpoint that return the same text provided as parameter. It's also possible to ask for a waiting time to get responses.
+Um endpoint REST simples que retorna o mesmo texto que eu enviar como parametro. Também deve ser possível pedir um tempo de espera em milisegundos pra API responder.
 
-You can find the complete source code of this sample [on my GitHub](https://github.com/jjbeto/echo), and you can also:
+Você pode encontrar o código fonte completo deste exemplo no meu [GitHub](https://github.com/jjbeto/echo), ou você também pode:
 
-- Pull from [DockerHub](https://hub.docker.com/r/jjbeto/echo)
-- Access the running app on [Heroku]()
+- Baixar a imagem diretamente do [DockerHub](https://hub.docker.com/r/jjbeto/echo)
 
-## 3. Project Generation {#project-generation}
+## 3. Geração do Projeto {#geracao-do-projeto}
 
-I did follow the instructions on [Quarkus Docs](https://quarkus.io/guides/openapi-swaggerui), as follows:
+Eu segui as etapas descritas na documentação do [Quarkus](https://quarkus.io/guides/openapi-swaggerui):
 
-1. Create base project
+1. Criar o projeto base:
 
 ```bash
 mvn io.quarkus:quarkus-maven-plugin:1.0.1.Final:create \
@@ -78,75 +77,75 @@ mvn io.quarkus:quarkus-maven-plugin:1.0.1.Final:create \
     -Dextensions=resteasy-jsonb
 ```
 
-2. Remove .mvn from git: added `.mvn` on `.gitignore`
+2. Removi .mvn do git: adicionei `.mvn` no `.gitignore`
 
-3. Create basic logic: returns the same text provided as a response and accepts a query parameter to set a wait time to return the response.
-    
-    - Change to use root as base endpoint;
-    - Returns the message path parameter back to the caller;
-    - Add waiting time to respond as a query parameter;
+3. Criar a lógica da aplicação: retornar o texto parametrizado como PLAINTEXT e aceitar um query parameter como tempo de espera antes da API retornar a resposta.
+
+    - Mudar o path root pra ser da própria aplicação;
+    - Retornar a mensagem no path parameter de volta para o cliente;
+    - Adicionar um tempo de espera de acordo com o query parameter;
 
 ## 4. Swagger {#swagger}
 
-Let's make it better for 3th party usage, adding swagger descriptions to "teach" how to use the API! It's easy with Quarkus as you can see [in the documentation](https://quarkus.io/guides/openapi-swaggerui).
+Vamos tornar essa API mais amigável pra ser consumida por outras aplicaçōes, adicionando Swagger e colocando algumas descriçōes, explicando pra que serve cada parâmetro. Com Quarkus isso é bem facil e pode ser encontrado como fazer diretamente na [documentação](https://quarkus.io/guides/openapi-swaggerui).
 
-Firstly we need to add Swagger to the project running the following command in the root folder:
+Primeiramente precisamos adicionar o Swagger ao projeto, executando o comando a seguir diretamente na raiz do projeto:
 
 ```bash
 ./mvnw quarkus:add-extension -Dextensions="openapi"
 ```
 
-But I don't like the endpoint generated `/openapi` 😒, instead I'm going to use `/swagger`, so we can add this property to `application.properties`:
+Mas eu não gosto do endpoint gerado automaticamente `/openapi` 😒, então eu vou mudar para `/swagger`. Pra isso basta mudar uma propriedade em `application.properties`:
 
 ```properties
 quarkus.smallrye-openapi.path=/swagger
 ```
 
-The `/swagger` endpoint is going to deliver the Yaml file describing the API.
+O endpoint `/swagger` vai fornecer um arquivo Yaml descrevendo a API.
 
-I want to activate SwaggerUI also:
+Eu também quero ativar o SwaggerUI:
 
 ```properties
 quarkus.swagger-ui.always-include=true
 ```
 
-The default endpoint for SwaggerUI is [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
+O endpoint padrão para o SwaggerUI é [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui).
 
-Nice! Now let's move on and add some descriptions for API users to know how to handle it. According to the [specification](https://swagger.io/specification/), we need to use the `openapi.yml` to add custom information:
+Muito bom! Agora vamos seguir em frente e adicionar algumas descriçōes para que usuários da API saibam como utiliza-la. De acordo com a [especificação](https://swagger.io/specification/) nós precisamos usar um arquivo `openapi.yml` para adicionar dados customizados:
 
-1. Access `http://localhost:8080/swagger` and download `openapi.yml`
-2. Save `openapi.yml` at `./src/main/resources/META-INF`
-3. Add some descriptions and API info
+1. Acesse `http://localhost:8080/swagger` para baixar o arquivo `openapi.yml` atualizado
+2. Salve `openapi.yml` no diretório `./src/main/resources/META-INF`
+3. Adicione algumas descriçōes e informaçōes sobre a API
 
-Now you can access it again via [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui) and check the result 😃
+Agora você pode verificar novamente o endereço local [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui) e verifique o resultado 😃
 
 ## 5. DockerHub {#dockerhub}
 
-I want to turn it possible that anyone can go to DockerHub and pull the final image of my Echo app.
+Eu quero que seja possível que qualquer um possa baixar a imagem diretamente do DockerHub.
 
-### Build the Native Image
+### Construindo uma Imagem Nativa
 
-Quarkus let us build a complete native app, with no JVM needed to run. It is awesome mainly for a simple app like Echo, because it's going to be crazing fast and in a incredible small and light image.
+Quarkus permite a criação de um app completamente nativo, onde uma JVM não é necessária. Isso é incrivel principalmente quando se trata de aplicaçōes simples como o **Echo**, por que a aplicação fica muito rápida e a imagem para execução muito pequena!
 
-To build the native image we need to have the pre-requisite setup as mentioned on [Quarkus docs](https://quarkus.io/guides/building-native-image), please follow the steps before continuing.
+Para construir a imagem nativa nós precisamos de alguns pre-requisitos conforme mencionado na [documentação do Quarkus](https://quarkus.io/guides/building-native-image), por favor siga estes passos antes de continuar.
 
-Notes: please be aware of the compatibility of GraalVM and the current Quarkus framework. Quarkus is always trying to be as close as possible to the last GraalVM build but you need to check if they are already compatible with the current version. At this moment the last build of GraalVM is 19.3.0.r11 and Quarkus is compatible only with **GraalVM 19.2.1**.
+Notas: fique atento da versão do GraalVM, se a que você esta instalando é compatível com a versão atual do Quarkus. O Quarkus está sempre em evolução e fica o mais próximo possível das últimas atualizaçōes do GraalVM, mas é preciso verificar se a versão atual é compatível: no momento que estou escrevendo este artigo o GraalVM está na versão 19.3.0.r11 enquanto o Quarkus é compatível apenas com **GraalVM 19.2.1**.
 
-After install GraalVM (I did using [sdkman](https://sdkman.io/)), Docker (or podman) and its dependencies, you can build the native package with this command:
+Depois de instalar o GraalVM (eu usei [sdkman](https://sdkman.io/)), Docker (ou podman) e as suas dependencias, você pode construir uma imagem nativa com o comando:
 
 ```bash
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
 ```
 
-According to **Quarkus** the build process is pretty much simple: 
+De acordo com o **Quarkus** a construção de uma imagem é muito simples: 
 
 ![Quarkus Build Process](https://quarkus.io/guides/images/native-executable-process.png)
 
-So TL;TR it's exactly like building a fat jar, but the execution to build a native app takes more time (and need more resources), 
+TL;TR é exatamente como construir um executável Jar com todas as suas dependencias (fat jar), mas a execução para construir uma imagem nativa demora mais tempo pra executar e custa mais recursos da máquina.
 
-#### Important Notes on Build Process
+#### Notas importantes sobre o processo de construção
 
-When building the native image with Docker on my Mac, I was getting this error:
+Ao construir a imagem usando Docker no meu Mac, eu recebi este erro:
 
 ```bash
 docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
@@ -199,7 +198,7 @@ Error: Image build request failed with exit status 137
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
 ```
 
-I found an issue on [Quarkus GitHub](https://github.com/quarkusio/quarkus/issues/1140) related to it and, when I changed my Docker env to use 3Gb (instead of 2Gb by default), the build worked:
+Eu encontrei uma issue no [GitHub do Quarkus](https://github.com/quarkusio/quarkus/issues/1140) relativo a esse erro e, quando mudei a memória do meu Docker para 3GB (ao invés dos 2GB padrão), o build funcionou:
 
 ```bash
 docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-native-image-source-jar:/project:z --rm quay.io/quarkus/ubi-quarkus-native-image:19.2.1 -J-Dsun.nio.ch.maxUpdateArraySize=100 -J-Djava.util.logging.manager=org.jboss.logmanager.LogManager -J-Dvertx.logger-delegate-factory-class-name=io.quarkus.vertx.core.runtime.VertxLogDelegateFactory -J-Dvertx.disableDnsResolver=true -J-Dio.netty.leakDetection.level=DISABLED -J-Dio.netty.allocator.maxOrder=1 --initialize-at-build-time= -H:InitialCollectionPolicy=com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime -jar echo-1.0-SNAPSHOT-runner.jar -J-Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -H:FallbackThreshold=0 -H:+ReportExceptionStackTraces -H:-AddAllCharsets -H:EnableURLProtocols=http -H:-JNI --no-server -H:-UseServiceLoaderFeature -H:+StackTrace echo-1.0-SNAPSHOT-runner
@@ -229,15 +228,15 @@ docker run -v /Users/beto/IdeaProjects/opensource/echo/target/echo-1.0-SNAPSHOT-
 [INFO] ------------------------------------------------------------------------
 ```
 
-#### Prepare the Image
+#### Preparar a Imagem
 
-To build the image locally we can run from root folder:
+Para criar a imagem localmente podemos executar o seguinte comando:
 
 ```bash
 docker build -f src/main/docker/Dockerfile.native -t jjbeto/echo .
 ```
 
-The output is:
+O resultado:
 
 ```bash
 Sending build context to Docker daemon  36.77MB
@@ -270,7 +269,7 @@ Successfully built 33592d7cd99d
 Successfully tagged jjbeto/echo:latest
 ```
 
-And if you list the local docker images:
+Se você listar as imagens locais:
 
 ```bash
 docker images
@@ -278,13 +277,13 @@ REPOSITORY       TAG                 IMAGE ID            CREATED             SIZ
 jjbeto/echo      latest              33592d7cd99d        12 seconds ago      142MB
 ```
 
-Now we can finally run our image on Docker:
+Agora podemos finalmente executar nossa imagem:
 
 ```bash
 docker run -i --rm -p 8080:8080 jjbeto/echo
 ```
 
-And the output is:
+E o resultado:
 
 ```bash
 2019-12-07 14:48:13,719 INFO  [io.quarkus] (main) echo 1.0-SNAPSHOT (running on Quarkus 1.0.1.Final) started in 0.012s. Listening on: http://0.0.0.0:8080
@@ -292,13 +291,13 @@ And the output is:
 2019-12-07 14:48:13,719 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy, resteasy-jsonb, smallrye-openapi, swagger-ui]
 ```
 
-Awesome! And we can reach the service on localhost:
+Sensacional! E se acessarmos o localhost:
 
-{{< figure src="localhost-8080.png" title="Localhost running on port 8080" >}}
+{{< figure src="localhost-8080.png" title="Localhost executando na porta 8080" >}}
 
-But... The image is still too big! 142MB is not a good size for such small service.. Right?
+Mas... A imagem ainda é muito grande! 142MB não é um bom tamanho legal pra um serviço tão pequeno, certo?
 
-I changed the `.src/main/docker/Dockerfile.native` to use only the minimum files from `debian:10-slim`, following a [very nice tip](https://github.com/quarkusio/quarkus/issues/326):
+Eu mudei o arquivo `.src/main/docker/Dockerfile.native` para usar o mínimo necessário de arquivos da imagem `debian:10-slim`, seguindo [esse conselho](https://github.com/quarkusio/quarkus/issues/326): 
 
 ```
 ## Stage 1 : intermediate container to copy the needed dynamic libraries
@@ -320,7 +319,7 @@ EXPOSE 8080
 CMD ["/bin/app", "-Dquarkus.http.host=0.0.0.0"]
 ```
 
-And now my image has a more reasonable size: 44.5MB
+E agora a minha imagem tem um tamanho mais interessante: 44.5MB
 
 ```bash
 docker images
@@ -328,28 +327,28 @@ REPOSITORY        TAG                 IMAGE ID            CREATED             SI
 jjbeto/echo       latest              3d7de934bcd4        29 seconds ago      44.5MB
 ```
 
-But the final result on DockerHub is different:
+Mas o resultado final no DockerHub é diferente:
 
-{{< figure src="dockerhub.png" title="Image on DockerHub" >}}
+{{< figure src="dockerhub.png" title="Imagem no DockerHub" >}}
 
-15MB?? Now we are talking!! 😎
+15MB?? Agora sim!! 😎
 
-Do you know how to make it even smaller? Please drop a message! 📫
+Você sabe como torná-la ainda menor? Por favor me manda uma mensagem! 📫
 
-#### How to Publish on DockerHub?
+#### Como Publicar no DockerHub?
 
-To publish the image on DockerHub is pretty simple:
+Para publicar a imagem no DockerHub é muito simples:
 
-1. Login by `docker login` and give your username/password
-2. Push the local image to remote using the command `docker push <image_name>`, in my case it was `docker push jjbeto/echo`
-3. Go to [DockerHub](https://hub.docker.com/r/jjbeto/echo) and check it 🎉
+1. Login com o comando `docker login` e usar seu usuário/senha
+2. Enviar sua imagem local para o repositório remoto com o comando `docker push <image_name>`, no meu caso `docker push jjbeto/echo`
+3. Vá até o [DockerHub](https://hub.docker.com/r/jjbeto/echo) e verifique o resultado 🎉
 
-## 6. Conclusion {#conclusion}
+## 6. Conclusão {#conclusao}
 
-Quarkus is an amazing tool and brings a lot of power to the Java world in my opinion. It's easy to use, has already a lot of built-in tools (like Spring-Boot maybe?) that make it possible to build good apps in a fraction of time.
+Quarkus é uma ferramenta incrível e renova mais uma vez o poder do Java no mundo atual, na minha opinião. É fácio de usar, já possui uma grande lista de ferramentas que podem ser usadas em conjunto, como Hibernate, Vert.x e MicroProfile.
 
-But please don't be silly, Quarkus is not for everyone and not for everything! As it's using GraalVM you can't use any library out there, because you can have reflection problems for example.
+Mas por favor não se engane, Quarkus não é pra todo mundo e nem pra todo projeto! Como é construido usando GraalVM, não é possível usar qualquer lib que você encontrar, ou você pode encontrar problemas como reflections por exemplo.
 
-If you can use Quarkus library standards, Quarkus is for sure something to consider for your project.
+Se você puder usar as libs padrões do Quarkus, com certeza ele é um framework pra se levar em consideração no seu projeto.
 
-About the Echo App, it was a good choice to use Quarkus and I want to use this app in a near future to do more testing and labs withs microservices environments, stay tuned! 😎 
+Sobre o Echo App, Quarkus foi uma boa escolha! O app foi gerado já pensando um pouco mais na frente, quando eu for fazer alguns testes com ambientes de microserviços, fiquem ligados! 😎
